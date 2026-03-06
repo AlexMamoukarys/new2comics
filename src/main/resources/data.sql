@@ -28,3 +28,5 @@ INSERT INTO marks(studentId, courseCode, mark) VALUES(5555, 'GOT456', 90);
 
 INSERT INTO classrooms(code, capacity) VALUES('MB123', 30);
 INSERT INTO classrooms(code, capacity) VALUES('BA1130', 60);
+
+INSERT INTO volumes(id, name, numIssues, numLikes, summary, startYear, image) VALUES(1, 'Batman #1', 2, 3, 'Blah blah blah', 2000, 'batman.png');
