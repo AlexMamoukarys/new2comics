@@ -35,9 +35,5 @@ public class Power {
     private String deck;
 
 
-    //@ManyToMany(mappedBy = "__")
-    //@Nullable
-    //private List<Character> characters = new ArrayList<>();
-
 }
 

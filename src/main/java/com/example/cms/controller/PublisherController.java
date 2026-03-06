@@ -1,6 +1,7 @@
 package com.example.cms.controller;
 
 import com.example.cms.model.entity.Publisher;
+import com.example.cms.model.entity.Volume;
 import com.example.cms.model.repository.PublisherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -29,4 +30,8 @@ public class PublisherController {
         return repository.findAll();
     }
     
+    @GetMapping("/publishers/search/{searchstring}")
+    List<Publisher> searchPublishers(@PathVariable("searchstring") String searchString) {
+        return repository.search(searchString);
+    }
 }

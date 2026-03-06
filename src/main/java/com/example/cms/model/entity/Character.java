@@ -47,10 +47,5 @@ public class Character {
     //@ManyToMany(mappedBy = "teamId")
     //@Nullable
     //private List<Team> teams = new ArrayList<>();
-
-    //@ManyToMany(mappedBy = "volumeId")
-    //@Nullable
-    //private List<Volume> volumes = new ArrayList<>();
-
 }
 

@@ -18,14 +18,10 @@ public class Issue {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToOne
-    @JoinColumn(name = "volumeId")
-    private Volume volume;
-
     @NotEmpty
     private String name;
 
     @NotEmpty
-    private String summary;
+    private String deck;
 
 }

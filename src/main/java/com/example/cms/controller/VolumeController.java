@@ -1,5 +1,6 @@
 package com.example.cms.controller;
 
+import com.example.cms.model.entity.CourseMark;
 import com.example.cms.model.entity.Student;
 import com.example.cms.model.entity.Volume;
 import com.example.cms.model.repository.VolumeRepository;
@@ -40,4 +41,13 @@ public class VolumeController {
         repository.deleteById(volumeId);
     }
     
+    @GetMapping("/volumes/search/{searchstring}")
+    List<Volume> searchVolume(@PathVariable("searchstring") String searchString) {
+        return repository.search(searchString);
+    }
+
+    @PostMapping("/volumes/incrementlikes/{id}")
+    void incrementLikes(@PathVariable("id") long id) {
+        repository.incrementLikes(id);
+    }
 }

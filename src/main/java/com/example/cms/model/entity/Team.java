@@ -33,11 +33,7 @@ public class Team {
 
     @NotEmpty
     private String deck;
-
-    //@ManyToMany(mappedBy = "__")
-    //@Nullable
-    //private List<Characters> characters = new ArrayList<>();
-
+    
     //@ManyToMany(mappedBy = "__")
     //@Nullable
     //private List<Volume> volumes = new ArrayList<>();
