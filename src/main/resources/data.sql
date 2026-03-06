@@ -42,3 +42,4 @@ INSERT INTO powers(id, name, deck) VALUES(2, 'Time Freeze', ' ');
 INSERT INTO powers(id, name, deck) VALUES(3, 'Untraceable DNA', ' ');
 
 INSERT INTO genres(id, name, deck) VALUES(1, 'Women in Refridgerators', ' ');
+INSERT INTO issues(id,volumeId,name, summary) VALUES(1, 1, 'Blah blah blah', 'nfiohnoj]ld');
