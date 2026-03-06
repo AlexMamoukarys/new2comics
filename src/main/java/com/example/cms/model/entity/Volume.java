@@ -18,21 +18,20 @@ import java.util.List;
 public class Volume {
 
     @Id
-    @NotEmpty
     private long id;
 
     @NotEmpty
     private String name;
 
     // TODO uncomment and edit column name after making Publisher entity
-    // @ManyToOne
-    // @JoinColumn(name="___")
-    // private Publisher publisher;
+    @ManyToOne
+    @JoinColumn(name="publisherId")
+    private Publisher publisher;
 
-    // TODO uncomment and edit column names after making Character and Genre entities
-    //@OneToMany(mappedBy = "___")
-    //@Nullable
-    //private List<Character> characters = new ArrayList<>();
+ 
+    // @ManyToMany(mappedBy = "characterId")
+    // @Nullable
+    // private List<Character> characters = new ArrayList<>();
     //
     //@OneToMany(mappedBy = "___")
     //@Nullable
