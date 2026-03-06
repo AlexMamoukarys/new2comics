@@ -30,3 +30,15 @@ INSERT INTO classrooms(code, capacity) VALUES('MB123', 30);
 INSERT INTO classrooms(code, capacity) VALUES('BA1130', 60);
 
 INSERT INTO volumes(id, name, numIssues, numLikes, summary, startYear, image) VALUES(1, 'Batman #1', 2, 3, 'Blah blah blah', 2000, 'batman.png');
+
+INSERT INTO characters(id, name, deck, gender, origin) VALUES(1, 'Ethan', 'Fine Shit', 'Female', 'Ohio');
+
+INSERT INTO publishers(id, name, deck, description, image) VALUES(1, 'a', 'b', 'c', 'd');
+
+INSERT INTO teams(id, name, deck, publisherId) VALUES(1, 'a', 'b', 1);
+
+INSERT INTO powers(id, name, deck) VALUES(1, 'Invisibility', ' ');
+INSERT INTO powers(id, name, deck) VALUES(2, 'Time Freeze', ' ');
+INSERT INTO powers(id, name, deck) VALUES(3, 'Untraceable DNA', ' ');
+
+INSERT INTO genres(id, name, deck) VALUES(1, 'Women in Refridgerators', ' ');

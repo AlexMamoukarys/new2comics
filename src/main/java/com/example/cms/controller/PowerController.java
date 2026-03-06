@@ -1,8 +1,7 @@
 package com.example.cms.controller;
 
-import com.example.cms.model.entity.Student;
-import com.example.cms.model.entity.Volume;
-import com.example.cms.model.repository.VolumeRepository;
+import com.example.cms.model.entity.Power;
+import com.example.cms.model.repository.PowerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,27 +16,17 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-public class VolumeController {
+public class PowerController {
     @Autowired
-    private final VolumeRepository repository;
+    private final PowerRepository repository;
 
-    public VolumeController(VolumeRepository repository) {
+    public PowerController(PowerRepository repository) {
         this.repository = repository;
     }
 
-    @GetMapping("/volumes")
-    List<Volume> retrieveAllVolumes() {
+    @GetMapping("/powers")
+    List<Power> retrieveAllPowers() {
         return repository.findAll();
-    }
-
-    @PostMapping("/volumes")
-    Volume createVolume(@RequestBody Volume newVolume) {
-        return repository.save(newVolume);
-    }
-
-    @DeleteMapping("/volumes/{id}")
-    void deleteVolume(@PathVariable("id") Long volumeId) {
-        repository.deleteById(volumeId);
     }
     
 }
