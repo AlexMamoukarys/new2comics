@@ -1,6 +1,7 @@
 package com.example.cms.controller;
 
 import com.example.cms.model.entity.Power;
+import com.example.cms.model.entity.Volume;
 import com.example.cms.model.repository.PowerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -29,4 +30,8 @@ public class PowerController {
         return repository.findAll();
     }
     
+    @GetMapping("/powers/search/{searchstring}")
+    List<Power> searchPowers(@PathVariable("searchstring") String searchString) {
+        return repository.search(searchString);
+    }
 }

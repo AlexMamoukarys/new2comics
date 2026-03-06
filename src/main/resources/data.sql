@@ -29,7 +29,12 @@ INSERT INTO marks(studentId, courseCode, mark) VALUES(5555, 'GOT456', 90);
 INSERT INTO classrooms(code, capacity) VALUES('MB123', 30);
 INSERT INTO classrooms(code, capacity) VALUES('BA1130', 60);
 
-INSERT INTO volumes(id, name, numIssues, numLikes, summary, startYear, image) VALUES(1, 'Batman #1', 2, 3, 'Blah blah blah', 2000, 'batman.png');
+INSERT INTO issues(id, name, deck) VALUES(1, 'Blah blah blah', 'nfiohnoj]ld');
+INSERT INTO issues(id, name, deck) VALUES(2, 'Blah blah blah', 'nfiohnoj]ld');
+
+INSERT INTO volumes(id, name, numIssues, numLikes, deck, startYear, image, firstIssueId) VALUES(1, 'Batman #1', 2, 0, 'Blah cheese blah', 2000, 'batman.png', 1);
+INSERT INTO volumes(id, name, numIssues, numLikes, deck, startYear, image, firstIssueId) VALUES(2, 'Spiderman #1', 2, 0, 'Blah blah blah', 2000, 'batman.png', 2);
+
 
 INSERT INTO characters(id, name, deck, gender, origin) VALUES(1, 'Ethan', 'Fine Shit', 'Female', 'Ohio');
 
@@ -42,4 +47,3 @@ INSERT INTO powers(id, name, deck) VALUES(2, 'Time Freeze', ' ');
 INSERT INTO powers(id, name, deck) VALUES(3, 'Untraceable DNA', ' ');
 
 INSERT INTO genres(id, name, deck) VALUES(1, 'Women in Refridgerators', ' ');
-INSERT INTO issues(id,volumeId,name, summary) VALUES(1, 1, 'Blah blah blah', 'nfiohnoj]ld');

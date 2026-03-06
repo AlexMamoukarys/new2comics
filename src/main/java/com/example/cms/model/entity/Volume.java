@@ -43,10 +43,11 @@ public class Volume {
 
     private int numLikes;
 
-    private String summary;
+    private String deck;
 
-    // TODO uncomment after making Issue entity
-    // private Issue firstIssue;
+    @OneToOne
+    @JoinColumn(name = "firstIssueId")
+    private Issue firstIssue;
 
     private int startYear;
 

@@ -1,6 +1,7 @@
 package com.example.cms.controller;
 
 import com.example.cms.model.entity.Issue;
+import com.example.cms.model.entity.Volume;
 import com.example.cms.model.repository.IssueRepository;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,4 +36,10 @@ public class IssueController {
     public void deleteIssue(@PathVariable Long id) {
         repository.deleteById(id);
     }
+
+    @GetMapping("/issues/search/{searchstring}")
+    List<Issue> searchIssues(@PathVariable("searchstring") String searchString) {
+        return repository.search(searchString);
+    }
+
 }

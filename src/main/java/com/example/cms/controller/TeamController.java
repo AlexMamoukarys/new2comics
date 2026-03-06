@@ -1,6 +1,7 @@
 package com.example.cms.controller;
 
 import com.example.cms.model.entity.Team;
+import com.example.cms.model.entity.Volume;
 import com.example.cms.model.repository.CharacterRepository;
 import com.example.cms.model.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +29,10 @@ public class TeamController {
     @GetMapping("/teams")
     List<Team> retrieveAllTeams() {
         return repository.findAll();
+    }
+
+    @GetMapping("/teams/search/{searchstring}")
+    List<Team> searchTeam(@PathVariable("searchstring") String searchString) {
+        return repository.search(searchString);
     }
 }

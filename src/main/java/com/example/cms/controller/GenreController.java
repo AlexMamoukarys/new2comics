@@ -1,6 +1,7 @@
 package com.example.cms.controller;
 
 import com.example.cms.model.entity.Genre;
+import com.example.cms.model.entity.Volume;
 import com.example.cms.model.repository.CharacterRepository;
 import com.example.cms.model.repository.GenreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,11 @@ public class GenreController {
     @GetMapping("/genres")
     List<Genre> retrieveAllGenres() {
         return repository.findAll();
+    }
+
+    @GetMapping("/genres/search/{searchstring}")
+    List<Genre> searchGenres(@PathVariable("searchstring") String searchString) {
+        return repository.search(searchString);
     }
     
 }

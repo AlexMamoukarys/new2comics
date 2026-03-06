@@ -33,10 +33,5 @@ public class Genre {
 
     @NotEmpty
     private String deck;
-
-    //@ManyToMany(mappedBy = "___")
-    //@Nullable
-    //private List<Volume> volumes = new ArrayList<>();
-
 }
 

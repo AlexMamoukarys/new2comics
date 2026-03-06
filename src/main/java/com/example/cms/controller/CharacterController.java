@@ -1,6 +1,7 @@
 package com.example.cms.controller;
 
 import com.example.cms.model.entity.Character;
+import com.example.cms.model.entity.Volume;
 import com.example.cms.model.repository.CharacterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -27,6 +28,11 @@ public class CharacterController {
     @GetMapping("/characters")
     List<Character> retrieveAllCharacters() {
         return repository.findAll();
+    }
+
+    @GetMapping("/characters/search/{searchstring}")
+    List<Character> searchCharacters(@PathVariable("searchstring") String searchString) {
+        return repository.search(searchString);
     }
     
 }
