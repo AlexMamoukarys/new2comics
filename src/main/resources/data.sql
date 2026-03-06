@@ -30,3 +30,4 @@ INSERT INTO classrooms(code, capacity) VALUES('MB123', 30);
 INSERT INTO classrooms(code, capacity) VALUES('BA1130', 60);
 
 INSERT INTO volumes(id, name, numIssues, numLikes, summary, startYear, image) VALUES(1, 'Batman #1', 2, 3, 'Blah blah blah', 2000, 'batman.png');
+INSERT INTO issues(id,volumeId,name, summary) VALUES(1, 1, 'Blah blah blah', 'nfiohnoj]ld');
