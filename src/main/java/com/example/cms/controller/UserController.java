@@ -34,4 +34,21 @@ public class UserController {
     User createUser(@RequestBody User newUser) {
         return repository.save(newUser);
     }
+
+    // GET liked volumes
+    // GET saved volumes
+    // GET publishers
+    // GET characters
+    // GET genres
+    // GET powers
+    // GET teams
+    // PUT publishers
+    // PUT characters
+    // PUT genres
+    // PUT liked volumes
+    // PUT saved volumes
+    // PUT powers
+    // PUT teams
+    // POST user
+
 }
