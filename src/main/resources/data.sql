@@ -49,4 +49,28 @@ INSERT INTO powers(id, name, deck) VALUES(1, 'Invisibility', ' ');
 INSERT INTO powers(id, name, deck) VALUES(2, 'Time Freeze', ' ');
 INSERT INTO powers(id, name, deck) VALUES(3, 'Untraceable DNA', ' ');
 
-INSERT INTO genres(id, name, deck) VALUES(1, 'Women in Refridgerators', ' ');
+INSERT INTO genres(id, name) VALUES(0, 'Women in Refridgerators');
+
+INSERT INTO genres(id, name) VALUES(1, 'Action');
+INSERT INTO genres(id, name) VALUES(2, 'Fantasy');
+INSERT INTO genres(id, name) VALUES(3, 'Space');
+INSERT INTO genres(id, name) VALUES(4, 'Sci-Fi');
+INSERT INTO genres(id, name) VALUES(5, 'Romance');
+
+INSERT INTO characters(id, name, deck, gender, origin) VALUES(1, 'Archie', ' ', 'Male', 'Ohio');
+INSERT INTO characters(id, name, deck, gender, origin) VALUES(2, 'Batman', ' ', 'Male', 'Ohio');
+INSERT INTO characters(id, name, deck, gender, origin) VALUES(3, 'Spiderman', ' ', 'Male', 'Ohio');
+INSERT INTO characters(id, name, deck, gender, origin) VALUES(4, 'Superman', ' ', 'Male', 'Ohio');
+INSERT INTO characters(id, name, deck, gender, origin) VALUES(5, 'Flash', ' ', 'Male', 'Ohio');
+
+INSERT INTO publishers(id, name, deck, description, image) VALUES(1, 'Marvel', 'b', 'c', 'd');
+INSERT INTO publishers(id, name, deck, description, image) VALUES(2, 'DC', 'b', 'c', 'd');
+INSERT INTO publishers(id, name, deck, description, image) VALUES(3, 'Archie', 'b', 'c', 'd');
+
+INSERT INTO powers(id, name, deck) VALUES(1, 'Speed', ' ');
+INSERT INTO powers(id, name, deck) VALUES(2, 'Flight', ' ');
+INSERT INTO powers(id, name, deck) VALUES(3, 'Web', ' ');
+
+INSERT INTO teams(id, name, deck, publisherId) VALUES(1, 'Avengers', 'b', 1);
+INSERT INTO teams(id, name, deck, publisherId) VALUES(2, 'Justice League', 'b', 2);
+INSERT INTO teams(id, name, deck, publisherId) VALUES(3, 'Fantastic Four', 'b', 1);
