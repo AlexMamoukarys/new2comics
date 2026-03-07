@@ -45,9 +45,9 @@ public class Volume {
 
     private String deck;
 
-    @OneToOne
-    @JoinColumn(name = "firstIssueId")
-    private Issue firstIssue;
+//    @OneToOne
+//    @JoinColumn(name = "firstIssueId")
+//    private Issue firstIssue;
 
     private int startYear;
 
