@@ -1,8 +1,9 @@
 package com.example.cms.controller;
 
-import com.example.cms.model.entity.Publisher;
+import com.example.cms.model.entity.Genre;
 import com.example.cms.model.entity.Volume;
-import com.example.cms.model.repository.PublisherRepository;
+import com.example.cms.model.repository.CharacterRepository;
+import com.example.cms.model.repository.GenreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,21 +18,22 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-public class PublisherController {
+public class GenreController {
     @Autowired
-    private final PublisherRepository repository;
+    private final GenreRepository repository;
 
-    public PublisherController(PublisherRepository repository) {
+    public GenreController(GenreRepository repository) {
         this.repository = repository;
     }
 
-    @GetMapping("/publishers")
-    List<Publisher> retrieveAllPublishers() {
+    @GetMapping("/genres")
+    List<Genre> retrieveAllGenres() {
         return repository.findAll();
     }
-    
-    @GetMapping("/publishers/search/{searchstring}")
-    List<Publisher> searchPublishers(@PathVariable("searchstring") String searchString) {
+
+    @GetMapping("/genres/search/{searchstring}")
+    List<Genre> searchGenres(@PathVariable("searchstring") String searchString) {
         return repository.search(searchString);
     }
+    
 }

@@ -1,9 +1,8 @@
 package com.example.cms.controller;
 
-import com.example.cms.model.entity.Genre;
+import com.example.cms.model.entity.Character;
 import com.example.cms.model.entity.Volume;
 import com.example.cms.model.repository.CharacterRepository;
-import com.example.cms.model.repository.GenreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,21 +17,21 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-public class GenreController {
+public class CharacterController {
     @Autowired
-    private final GenreRepository repository;
+    private final CharacterRepository repository;
 
-    public GenreController(GenreRepository repository) {
+    public CharacterController(CharacterRepository repository) {
         this.repository = repository;
     }
 
-    @GetMapping("/genres")
-    List<Genre> retrieveAllGenres() {
+    @GetMapping("/characters")
+    List<Character> retrieveAllCharacters() {
         return repository.findAll();
     }
 
-    @GetMapping("/genres/search/{searchstring}")
-    List<Genre> searchGenres(@PathVariable("searchstring") String searchString) {
+    @GetMapping("/characters/search/{searchstring}")
+    List<Character> searchCharacters(@PathVariable("searchstring") String searchString) {
         return repository.search(searchString);
     }
     
