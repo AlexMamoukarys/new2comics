@@ -1,5 +1,6 @@
 package com.example.cms.controller;
 
+import com.example.cms.controller.exceptions.IssueNotFoundException;
 import com.example.cms.model.entity.Issue;
 import com.example.cms.model.entity.Volume;
 import com.example.cms.model.repository.IssueRepository;
@@ -29,7 +30,7 @@ public class IssueController {
 
     @GetMapping("/issues/{id}")
     public Issue retrieveIssue(@PathVariable Long id) {
-        return repository.findById(id).orElse(null);
+        return repository.findById(id).orElseThrow(() -> new IssueNotFoundException(id));
     }
 
     @DeleteMapping("/issues/{id}")
