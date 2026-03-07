@@ -17,8 +17,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = "saved_volumes")
-public class SavedVolumes {
+@Table(name = "saved_volume")
+public class SavedVolume {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +32,7 @@ public class SavedVolumes {
     @JoinColumn(name="volumeId")
     private Volume volume;
 
-    public SavedVolumes(User user, Volume volume) {
+    public SavedVolume(User user, Volume volume) {
         this.user = user;
         this.volume = volume;
     }
