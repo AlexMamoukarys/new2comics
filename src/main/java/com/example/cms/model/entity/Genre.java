@@ -30,8 +30,5 @@ public class Genre {
 
     @NotEmpty
     private String name;
-
-    @NotEmpty
-    private String deck;
 }
 
