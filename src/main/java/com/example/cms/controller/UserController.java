@@ -1,11 +1,9 @@
 package com.example.cms.controller;
 
-import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -219,6 +217,90 @@ public class UserController {
         Team team = teamRepository.findById(teamId).orElseThrow();
         PreferredTeam preferredTeam = new PreferredTeam(user, team);
         return preferredTeamRepository.save(preferredTeam);
+    }
+
+    @PutMapping("/users/{userId}/preferredpublishers/remove/{publisherId}")
+    PreferredPublisher removePreferredPublisher(@PathVariable("userId") Long userId,
+                        @PathVariable("publisherId") Long publisherId) {
+    User user = repository.findById(userId).orElseThrow();
+    PreferredPublisher preferredPublisher = user.getPreferredPublishers().stream()
+        .filter(item -> item.getPublisher().getId() == publisherId)
+        .findFirst()
+        .orElseThrow();
+    preferredPublisherRepository.delete(preferredPublisher);
+    return preferredPublisher;
+    }
+
+    @PutMapping("/users/{userId}/preferredcharacters/remove/{characterId}")
+    PreferredCharacter removePreferredCharacter(@PathVariable("userId") Long userId,
+                        @PathVariable("characterId") Long characterId) {
+    User user = repository.findById(userId).orElseThrow();
+    PreferredCharacter preferredCharacter = user.getPreferredCharacters().stream()
+        .filter(item -> item.getCharacter().getId() == characterId)
+        .findFirst()
+        .orElseThrow();
+    preferredCharacterRepository.delete(preferredCharacter);
+    return preferredCharacter;
+    }
+
+    @PutMapping("/users/{userId}/preferredgenres/remove/{genreId}")
+    PreferredGenre removePreferredGenre(@PathVariable("userId") Long userId,
+                    @PathVariable("genreId") Long genreId) {
+    User user = repository.findById(userId).orElseThrow();
+    PreferredGenre preferredGenre = user.getPreferredGenres().stream()
+        .filter(item -> item.getGenre().getId() == genreId)
+        .findFirst()
+        .orElseThrow();
+    preferredGenreRepository.delete(preferredGenre);
+    return preferredGenre;
+    }
+
+    @PutMapping("/users/{userId}/likedvolumes/remove/{volumeId}")
+    LikedVolume removeLikedVolume(@PathVariable("userId") Long userId,
+                    @PathVariable("volumeId") Long volumeId) {
+    User user = repository.findById(userId).orElseThrow();
+    LikedVolume likedVolume = user.getLikedVolumes().stream()
+        .filter(item -> item.getVolume().getId() == volumeId)
+        .findFirst()
+        .orElseThrow();
+    likedVolumeRepository.delete(likedVolume);
+    return likedVolume;
+    }
+
+    @PutMapping("/users/{userId}/savedvolumes/remove/{volumeId}")
+    SavedVolume removeSavedVolume(@PathVariable("userId") Long userId,
+                    @PathVariable("volumeId") Long volumeId) {
+    User user = repository.findById(userId).orElseThrow();
+    SavedVolume savedVolume = user.getSavedVolumes().stream()
+        .filter(item -> item.getVolume().getId() == volumeId)
+        .findFirst()
+        .orElseThrow();
+    savedVolumeRepository.delete(savedVolume);
+    return savedVolume;
+    }
+
+    @PutMapping("/users/{userId}/preferredpowers/remove/{powerId}")
+    PreferredPower removePreferredPower(@PathVariable("userId") Long userId,
+                    @PathVariable("powerId") Long powerId) {
+    User user = repository.findById(userId).orElseThrow();
+    PreferredPower preferredPower = user.getPreferredPowers().stream()
+        .filter(item -> item.getPower().getId() == powerId)
+        .findFirst()
+        .orElseThrow();
+    preferredPowerRepository.delete(preferredPower);
+    return preferredPower;
+    }
+
+    @PutMapping("/users/{userId}/preferredteams/remove/{teamId}")
+    PreferredTeam removePreferredTeam(@PathVariable("userId") Long userId,
+                        @PathVariable("teamId") Long teamId) {
+    User user = repository.findById(userId).orElseThrow();
+    PreferredTeam preferredTeam = user.getPreferredTeams().stream()
+        .filter(item -> item.getTeam().getId() == teamId)
+        .findFirst()
+        .orElseThrow();
+    preferredTeamRepository.delete(preferredTeam);
+    return preferredTeam;
     }
 
 }

@@ -3,16 +3,14 @@ package com.example.cms.model.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
 
 import org.springframework.lang.Nullable;
 
@@ -37,30 +35,37 @@ public class User {
     // @NotEmpty
     // private String password;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     @Nullable
     private List<PreferredGenre> preferredGenres = new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     @Nullable
     private List<PreferredCharacter> preferredCharacters = new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     @Nullable
     private List<PreferredPublisher> preferredPublishers = new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     @Nullable
     private List<PreferredPower> preferredPowers = new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     @Nullable
     private List<PreferredTeam> preferredTeams = new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     @Nullable
     private List<LikedVolume> likedVolumes = new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     @Nullable
     private List<SavedVolume> savedVolumes = new ArrayList<>();
