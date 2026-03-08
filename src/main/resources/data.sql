@@ -38,17 +38,6 @@ INSERT INTO volumes(id, name, numIssues, numLikes, deck, startYear, image) VALUE
 INSERT INTO volumes(id, name, numIssues, numLikes, deck, startYear, image) VALUES(4, 'Spiderman #3', 2, 6, 'Blah blah blah', 2000, 'batman.png');
 INSERT INTO volumes(id, name, numIssues, numLikes, deck, startYear, image) VALUES(5, 'Spiderman #4', 2, 1, 'Blah blah blah', 2000, 'batman.png');
 
-
-INSERT INTO characters(id, name, deck, gender, origin) VALUES(1, 'Ethan', 'Fine Shit', 'Female', 'Ohio');
-
-INSERT INTO publishers(id, name, deck, description, image) VALUES(1, 'a', 'b', 'c', 'd');
-
-INSERT INTO teams(id, name, deck, publisherId) VALUES(1, 'a', 'b', 1);
-
-INSERT INTO powers(id, name, deck) VALUES(1, 'Invisibility', ' ');
-INSERT INTO powers(id, name, deck) VALUES(2, 'Time Freeze', ' ');
-INSERT INTO powers(id, name, deck) VALUES(3, 'Untraceable DNA', ' ');
-
 INSERT INTO genres(id, name) VALUES(0, 'Women in Refridgerators');
 
 INSERT INTO genres(id, name) VALUES(1, 'Action');
