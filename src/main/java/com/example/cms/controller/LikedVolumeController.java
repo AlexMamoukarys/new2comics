@@ -1,9 +1,7 @@
 package com.example.cms.controller;
 
-import com.example.cms.model.entity.Team;
-import com.example.cms.model.entity.Volume;
-import com.example.cms.model.repository.CharacterRepository;
-import com.example.cms.model.repository.TeamRepository;
+import com.example.cms.model.entity.LikedVolume;
+import com.example.cms.model.repository.LikedVolumeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,21 +16,26 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-public class TeamController {
+public class LikedVolumeController {
     @Autowired
-    private final TeamRepository repository;
+    private final LikedVolumeRepository repository;
 
-    public TeamController(TeamRepository repository) {
+    public LikedVolumeController(LikedVolumeRepository repository) {
         this.repository = repository;
     }
 
-    @GetMapping("/teams")
-    List<Team> retrieveAllTeams() {
+    @GetMapping("/likedvolumes")
+    List<LikedVolume> retrieveAllVolumes() {
         return repository.findAll();
     }
 
-    @GetMapping("/teams/search/{searchstring}")
-    List<Team> searchTeam(@PathVariable("searchstring") String searchString) {
-        return repository.search(searchString);
+    @PostMapping("/likedvolumes")
+    LikedVolume createLikedVolume(@RequestBody LikedVolume newVolume) {
+        return repository.save(newVolume);
+    }
+
+    @DeleteMapping("/likedvolumes/{id}")
+    void deleteVolume(@PathVariable("id") Long volumeId) {
+        repository.deleteById(volumeId);
     }
 }

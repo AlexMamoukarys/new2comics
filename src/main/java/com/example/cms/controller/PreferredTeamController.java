@@ -1,9 +1,7 @@
 package com.example.cms.controller;
 
-import com.example.cms.model.entity.Team;
-import com.example.cms.model.entity.Volume;
-import com.example.cms.model.repository.CharacterRepository;
-import com.example.cms.model.repository.TeamRepository;
+import com.example.cms.model.entity.PreferredTeam;
+import com.example.cms.model.repository.PreferredTeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,21 +16,26 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-public class TeamController {
+public class PreferredTeamController {
     @Autowired
-    private final TeamRepository repository;
+    private final PreferredTeamRepository repository;
 
-    public TeamController(TeamRepository repository) {
+    public PreferredTeamController(PreferredTeamRepository repository) {
         this.repository = repository;
     }
 
-    @GetMapping("/teams")
-    List<Team> retrieveAllTeams() {
+    @GetMapping("/preferredteams")
+    List<PreferredTeam> retrieveAllTeams() {
         return repository.findAll();
     }
 
-    @GetMapping("/teams/search/{searchstring}")
-    List<Team> searchTeam(@PathVariable("searchstring") String searchString) {
-        return repository.search(searchString);
+    @PostMapping("/preferredteams")
+    PreferredTeam createPreferredTeam(@RequestBody PreferredTeam newTeam) {
+        return repository.save(newTeam);
+    }
+
+    @DeleteMapping("/preferredteams/{id}")
+    void deleteTeam(@PathVariable("id") Long teamId) {
+        repository.deleteById(teamId);
     }
 }

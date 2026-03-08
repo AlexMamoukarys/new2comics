@@ -1,7 +1,5 @@
 package com.example.cms.controller;
 
-import com.example.cms.model.entity.CourseMark;
-import com.example.cms.model.entity.Student;
 import com.example.cms.model.entity.Volume;
 import com.example.cms.model.repository.VolumeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +28,9 @@ public class VolumeController {
     List<Volume> retrieveAllVolumes() {
         return repository.findAll();
     }
+
+    @GetMapping("/volumes/popular")
+    List<Volume> retrievePopularVolumes() { return repository.retrievePopularVolumes(); }
 
     @PostMapping("/volumes")
     Volume createVolume(@RequestBody Volume newVolume) {

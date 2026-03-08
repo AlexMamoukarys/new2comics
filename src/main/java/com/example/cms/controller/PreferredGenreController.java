@@ -1,9 +1,7 @@
 package com.example.cms.controller;
 
-import com.example.cms.model.entity.Team;
-import com.example.cms.model.entity.Volume;
-import com.example.cms.model.repository.CharacterRepository;
-import com.example.cms.model.repository.TeamRepository;
+import com.example.cms.model.entity.PreferredGenre;
+import com.example.cms.model.repository.PreferredGenreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,21 +16,26 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-public class TeamController {
+public class PreferredGenreController {
     @Autowired
-    private final TeamRepository repository;
+    private final PreferredGenreRepository repository;
 
-    public TeamController(TeamRepository repository) {
+    public PreferredGenreController(PreferredGenreRepository repository) {
         this.repository = repository;
     }
 
-    @GetMapping("/teams")
-    List<Team> retrieveAllTeams() {
+    @GetMapping("/preferredgenres")
+    List<PreferredGenre> retrieveAllGenres() {
         return repository.findAll();
     }
 
-    @GetMapping("/teams/search/{searchstring}")
-    List<Team> searchTeam(@PathVariable("searchstring") String searchString) {
-        return repository.search(searchString);
+    @PostMapping("/preferredgenres")
+    PreferredGenre createPreferredGenre(@RequestBody PreferredGenre newGenre) {
+        return repository.save(newGenre);
+    }
+
+    @DeleteMapping("/preferredgenres/{id}")
+    void deleteGenre(@PathVariable("id") Long genreId) {
+        repository.deleteById(genreId);
     }
 }
