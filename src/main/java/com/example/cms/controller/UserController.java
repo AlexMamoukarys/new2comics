@@ -80,20 +80,20 @@ public class UserController {
     @Autowired
     private final TeamRepository teamRepository;
 
-    public UserController(UserRepository repository, 
-                         LikedVolumeRepository likedVolumeRepository,
-                         SavedVolumeRepository savedVolumeRepository,
-                         PreferredGenreRepository preferredGenreRepository,
-                         PreferredCharacterRepository preferredCharacterRepository,
-                         PreferredPublisherRepository preferredPublisherRepository,
-                         PreferredPowerRepository preferredPowerRepository,
-                         PreferredTeamRepository preferredTeamRepository,
-                         VolumeRepository volumeRepository,
-                         GenreRepository genreRepository,
-                         CharacterRepository characterRepository,
-                         PublisherRepository publisherRepository,
-                         PowerRepository powerRepository,
-                         TeamRepository teamRepository) {
+    public UserController(UserRepository repository,
+                          LikedVolumeRepository likedVolumeRepository,
+                          SavedVolumeRepository savedVolumeRepository,
+                          PreferredGenreRepository preferredGenreRepository,
+                          PreferredCharacterRepository preferredCharacterRepository,
+                          PreferredPublisherRepository preferredPublisherRepository,
+                          PreferredPowerRepository preferredPowerRepository,
+                          PreferredTeamRepository preferredTeamRepository,
+                          VolumeRepository volumeRepository,
+                          GenreRepository genreRepository,
+                          CharacterRepository characterRepository,
+                          PublisherRepository publisherRepository,
+                          PowerRepository powerRepository,
+                          TeamRepository teamRepository) {
         this.repository = repository;
         this.likedVolumeRepository = likedVolumeRepository;
         this.savedVolumeRepository = savedVolumeRepository;
@@ -123,192 +123,192 @@ public class UserController {
     // GET endpoints
     @GetMapping("/users/{id}/likedvolumes")
     List<LikedVolume> getLikedVolumes(@PathVariable("id") Long userId) {
-        User user = repository.findById(userId).orElseThrow();
+        User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
         return user.getLikedVolumes();
     }
 
     @GetMapping("/users/{id}/savedvolumes")
     List<SavedVolume> getSavedVolumes(@PathVariable("id") Long userId) {
-        User user = repository.findById(userId).orElseThrow();
+        User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
         return user.getSavedVolumes();
     }
 
     @GetMapping("/users/{id}/preferredpublishers")
     List<PreferredPublisher> getPreferredPublishers(@PathVariable("id") Long userId) {
-        User user = repository.findById(userId).orElseThrow();
+        User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
         return user.getPreferredPublishers();
     }
 
     @GetMapping("/users/{id}/preferredcharacters")
     List<PreferredCharacter> getPreferredCharacters(@PathVariable("id") Long userId) {
-        User user = repository.findById(userId).orElseThrow();
+        User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
         return user.getPreferredCharacters();
     }
 
     @GetMapping("/users/{id}/preferredgenres")
     List<PreferredGenre> getPreferredGenres(@PathVariable("id") Long userId) {
-        User user = repository.findById(userId).orElseThrow();
+        User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
         return user.getPreferredGenres();
     }
 
     @GetMapping("/users/{id}/preferredpowers")
     List<PreferredPower> getPreferredPowers(@PathVariable("id") Long userId) {
-        User user = repository.findById(userId).orElseThrow();
+        User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
         return user.getPreferredPowers();
     }
 
     @GetMapping("/users/{id}/preferredteams")
     List<PreferredTeam> getPreferredTeams(@PathVariable("id") Long userId) {
-        User user = repository.findById(userId).orElseThrow();
+        User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
         return user.getPreferredTeams();
     }
 
     // PUT endpoints
     @PutMapping("/users/{userId}/preferredpublishers/{publisherId}")
-    PreferredPublisher addPreferredPublisher(@PathVariable("userId") Long userId, 
+    PreferredPublisher addPreferredPublisher(@PathVariable("userId") Long userId,
                                              @PathVariable("publisherId") Long publisherId) {
-        User user = repository.findById(userId).orElseThrow();
-        Publisher publisher = publisherRepository.findById(publisherId).orElseThrow();
+        User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
+        Publisher publisher = publisherRepository.findById(publisherId).orElseThrow(() -> new PublisherNotFoundException(publisherId));
         PreferredPublisher preferredPublisher = new PreferredPublisher(user, publisher);
         return preferredPublisherRepository.save(preferredPublisher);
     }
 
     @PutMapping("/users/{userId}/preferredcharacters/{characterId}")
-    PreferredCharacter addPreferredCharacter(@PathVariable("userId") Long userId, 
+    PreferredCharacter addPreferredCharacter(@PathVariable("userId") Long userId,
                                              @PathVariable("characterId") Long characterId) {
-        User user = repository.findById(userId).orElseThrow();
-        Character character = characterRepository.findById(characterId).orElseThrow();
+        User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
+        Character character = characterRepository.findById(characterId).orElseThrow(() -> new CharacterNotFoundException(characterId));
         PreferredCharacter preferredCharacter = new PreferredCharacter(user, character);
         return preferredCharacterRepository.save(preferredCharacter);
     }
 
     @PutMapping("/users/{userId}/preferredgenres/{genreId}")
-    PreferredGenre addPreferredGenre(@PathVariable("userId") Long userId, 
+    PreferredGenre addPreferredGenre(@PathVariable("userId") Long userId,
                                      @PathVariable("genreId") Long genreId) {
-        User user = repository.findById(userId).orElseThrow();
-        Genre genre = genreRepository.findById(genreId).orElseThrow();
+        User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
+        Genre genre = genreRepository.findById(genreId).orElseThrow(() -> new GenreNotFoundException(genreId));
         PreferredGenre preferredGenre = new PreferredGenre(user, genre);
         return preferredGenreRepository.save(preferredGenre);
     }
 
     @PutMapping("/users/{userId}/likedvolumes/{volumeId}")
-    LikedVolume addLikedVolume(@PathVariable("userId") Long userId, 
+    LikedVolume addLikedVolume(@PathVariable("userId") Long userId,
                                @PathVariable("volumeId") Long volumeId) {
-        User user = repository.findById(userId).orElseThrow();
-        Volume volume = volumeRepository.findById(volumeId).orElseThrow();
+        User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
+        Volume volume = volumeRepository.findById(volumeId).orElseThrow(() -> new VolumeNotFoundException(volumeId));
         LikedVolume likedVolume = new LikedVolume(user, volume);
         return likedVolumeRepository.save(likedVolume);
     }
 
     @PutMapping("/users/{userId}/savedvolumes/{volumeId}")
-    SavedVolume addSavedVolume(@PathVariable("userId") Long userId, 
+    SavedVolume addSavedVolume(@PathVariable("userId") Long userId,
                                @PathVariable("volumeId") Long volumeId) {
-        User user = repository.findById(userId).orElseThrow();
-        Volume volume = volumeRepository.findById(volumeId).orElseThrow();
+        User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
+        Volume volume = volumeRepository.findById(volumeId).orElseThrow(() -> new VolumeNotFoundException(volumeId));
         SavedVolume savedVolume = new SavedVolume(user, volume);
         return savedVolumeRepository.save(savedVolume);
     }
 
     @PutMapping("/users/{userId}/preferredpowers/{powerId}")
-    PreferredPower addPreferredPower(@PathVariable("userId") Long userId, 
+    PreferredPower addPreferredPower(@PathVariable("userId") Long userId,
                                      @PathVariable("powerId") Long powerId) {
-        User user = repository.findById(userId).orElseThrow();
-        Power power = powerRepository.findById(powerId).orElseThrow();
+        User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
+        Power power = powerRepository.findById(powerId).orElseThrow(() -> new PowerNotFoundException(powerId));
         PreferredPower preferredPower = new PreferredPower(user, power);
         return preferredPowerRepository.save(preferredPower);
     }
 
     @PutMapping("/users/{userId}/preferredteams/{teamId}")
-    PreferredTeam addPreferredTeam(@PathVariable("userId") Long userId, 
+    PreferredTeam addPreferredTeam(@PathVariable("userId") Long userId,
                                    @PathVariable("teamId") Long teamId) {
-        User user = repository.findById(userId).orElseThrow();
-        Team team = teamRepository.findById(teamId).orElseThrow();
+        User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
+        Team team = teamRepository.findById(teamId).orElseThrow(() -> new TeamNotFoundException(teamId));
         PreferredTeam preferredTeam = new PreferredTeam(user, team);
         return preferredTeamRepository.save(preferredTeam);
     }
 
     @PutMapping("/users/{userId}/preferredpublishers/remove/{publisherId}")
     PreferredPublisher removePreferredPublisher(@PathVariable("userId") Long userId,
-                        @PathVariable("publisherId") Long publisherId) {
-    User user = repository.findById(userId).orElseThrow();
-    PreferredPublisher preferredPublisher = user.getPreferredPublishers().stream()
-        .filter(item -> item.getPublisher().getId() == publisherId)
-        .findFirst()
-        .orElseThrow();
-    preferredPublisherRepository.delete(preferredPublisher);
-    return preferredPublisher;
+                                                @PathVariable("publisherId") Long publisherId) {
+        User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
+        PreferredPublisher preferredPublisher = user.getPreferredPublishers().stream()
+                .filter(item -> item.getPublisher().getId() == publisherId)
+                .findFirst()
+                .orElseThrow(() -> new PublisherNotFoundException(publisherId));
+        preferredPublisherRepository.delete(preferredPublisher);
+        return preferredPublisher;
     }
 
     @PutMapping("/users/{userId}/preferredcharacters/remove/{characterId}")
     PreferredCharacter removePreferredCharacter(@PathVariable("userId") Long userId,
-                        @PathVariable("characterId") Long characterId) {
-    User user = repository.findById(userId).orElseThrow();
-    PreferredCharacter preferredCharacter = user.getPreferredCharacters().stream()
-        .filter(item -> item.getCharacter().getId() == characterId)
-        .findFirst()
-        .orElseThrow();
-    preferredCharacterRepository.delete(preferredCharacter);
-    return preferredCharacter;
+                                                @PathVariable("characterId") Long characterId) {
+        User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
+        PreferredCharacter preferredCharacter = user.getPreferredCharacters().stream()
+                .filter(item -> item.getCharacter().getId() == characterId)
+                .findFirst()
+                .orElseThrow(() -> new CharacterNotFoundException(characterId));
+        preferredCharacterRepository.delete(preferredCharacter);
+        return preferredCharacter;
     }
 
     @PutMapping("/users/{userId}/preferredgenres/remove/{genreId}")
     PreferredGenre removePreferredGenre(@PathVariable("userId") Long userId,
-                    @PathVariable("genreId") Long genreId) {
-    User user = repository.findById(userId).orElseThrow();
-    PreferredGenre preferredGenre = user.getPreferredGenres().stream()
-        .filter(item -> item.getGenre().getId() == genreId)
-        .findFirst()
-        .orElseThrow();
-    preferredGenreRepository.delete(preferredGenre);
-    return preferredGenre;
+                                        @PathVariable("genreId") Long genreId) {
+        User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
+        PreferredGenre preferredGenre = user.getPreferredGenres().stream()
+                .filter(item -> item.getGenre().getId() == genreId)
+                .findFirst()
+                .orElseThrow(() -> new GenreNotFoundException(genreId));
+        preferredGenreRepository.delete(preferredGenre);
+        return preferredGenre;
     }
 
     @PutMapping("/users/{userId}/likedvolumes/remove/{volumeId}")
     LikedVolume removeLikedVolume(@PathVariable("userId") Long userId,
-                    @PathVariable("volumeId") Long volumeId) {
-    User user = repository.findById(userId).orElseThrow();
-    LikedVolume likedVolume = user.getLikedVolumes().stream()
-        .filter(item -> item.getVolume().getId() == volumeId)
-        .findFirst()
-        .orElseThrow();
-    likedVolumeRepository.delete(likedVolume);
-    return likedVolume;
+                                  @PathVariable("volumeId") Long volumeId) {
+        User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
+        LikedVolume likedVolume = user.getLikedVolumes().stream()
+                .filter(item -> item.getVolume().getId() == volumeId)
+                .findFirst()
+                .orElseThrow(() -> new VolumeNotFoundException(volumeId));
+        likedVolumeRepository.delete(likedVolume);
+        return likedVolume;
     }
 
     @PutMapping("/users/{userId}/savedvolumes/remove/{volumeId}")
     SavedVolume removeSavedVolume(@PathVariable("userId") Long userId,
-                    @PathVariable("volumeId") Long volumeId) {
-    User user = repository.findById(userId).orElseThrow();
-    SavedVolume savedVolume = user.getSavedVolumes().stream()
-        .filter(item -> item.getVolume().getId() == volumeId)
-        .findFirst()
-        .orElseThrow();
-    savedVolumeRepository.delete(savedVolume);
-    return savedVolume;
+                                  @PathVariable("volumeId") Long volumeId) {
+        User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
+        SavedVolume savedVolume = user.getSavedVolumes().stream()
+                .filter(item -> item.getVolume().getId() == volumeId)
+                .findFirst()
+                .orElseThrow(() -> new VolumeNotFoundException(volumeId));
+        savedVolumeRepository.delete(savedVolume);
+        return savedVolume;
     }
 
     @PutMapping("/users/{userId}/preferredpowers/remove/{powerId}")
     PreferredPower removePreferredPower(@PathVariable("userId") Long userId,
-                    @PathVariable("powerId") Long powerId) {
-    User user = repository.findById(userId).orElseThrow();
-    PreferredPower preferredPower = user.getPreferredPowers().stream()
-        .filter(item -> item.getPower().getId() == powerId)
-        .findFirst()
-        .orElseThrow();
-    preferredPowerRepository.delete(preferredPower);
-    return preferredPower;
+                                        @PathVariable("powerId") Long powerId) {
+        User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
+        PreferredPower preferredPower = user.getPreferredPowers().stream()
+                .filter(item -> item.getPower().getId() == powerId)
+                .findFirst()
+                .orElseThrow(() -> new PowerNotFoundException(powerId));
+        preferredPowerRepository.delete(preferredPower);
+        return preferredPower;
     }
 
     @PutMapping("/users/{userId}/preferredteams/remove/{teamId}")
     PreferredTeam removePreferredTeam(@PathVariable("userId") Long userId,
-                        @PathVariable("teamId") Long teamId) {
-    User user = repository.findById(userId).orElseThrow();
-    PreferredTeam preferredTeam = user.getPreferredTeams().stream()
-        .filter(item -> item.getTeam().getId() == teamId)
-        .findFirst()
-        .orElseThrow();
-    preferredTeamRepository.delete(preferredTeam);
-    return preferredTeam;
+                                      @PathVariable("teamId") Long teamId) {
+        User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
+        PreferredTeam preferredTeam = user.getPreferredTeams().stream()
+                .filter(item -> item.getTeam().getId() == teamId)
+                .findFirst()
+                .orElseThrow(() -> new TeamNotFoundException(teamId));
+        preferredTeamRepository.delete(preferredTeam);
+        return preferredTeam;
     }
 
 }
