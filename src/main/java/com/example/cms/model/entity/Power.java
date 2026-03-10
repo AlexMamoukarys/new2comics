@@ -34,6 +34,10 @@ public class Power {
     @NotEmpty
     private String deck;
 
+    @OneToMany(mappedBy = "power")
+    @Nullable
+    private List<CharacterPower> characterPower  = new ArrayList<>();
+
 
 }
 

@@ -40,12 +40,8 @@ public class Character {
     @NotEmpty
     private String origin;
 
-    //@ManyToMany(mappedBy = "powerId")
-    //@Nullable
-    //private List<Power> powers = new ArrayList<>();
-
-    //@ManyToMany(mappedBy = "teamId")
-    //@Nullable
-    //private List<Team> teams = new ArrayList<>();
+    @OneToMany(mappedBy = "character")
+    @Nullable
+    private List<CharacterPower> characterPower  = new ArrayList<>();
 }
 
