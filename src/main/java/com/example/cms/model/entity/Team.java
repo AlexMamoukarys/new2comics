@@ -38,8 +38,11 @@ public class Team {
     //@Nullable
     //private List<Volume> volumes = new ArrayList<>();
 
+    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Nullable
+    private List<VolumeTeam> volumeTeams = new ArrayList<>();
+
     @ManyToOne
     @JoinColumn(name="publisherId")
     private Publisher publisher;
-
 }

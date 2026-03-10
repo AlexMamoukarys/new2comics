@@ -23,12 +23,6 @@ public class Volume {
     @NotEmpty
     private String name;
 
-    // TODO uncomment and edit column name after making Publisher entity
-    @ManyToOne
-    @JoinColumn(name="publisherId")
-    private Publisher publisher;
-
-
     // @ManyToMany(mappedBy = "characterId")
     // @Nullable
     // private List<Character> characters = new ArrayList<>();
@@ -49,8 +43,17 @@ public class Volume {
 //    @JoinColumn(name = "firstIssueId")
 //    private Issue firstIssue;
 
+
     private int startYear;
 
     private String image;
 
+    @OneToMany(mappedBy = "volume", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Nullable
+    private List<VolumeTeam> volumeTeams = new ArrayList<>();
+
+    // TODO uncomment and edit column name after making Publisher entity
+    @ManyToOne
+    @JoinColumn(name="publisherId")
+    private Publisher publisher;
 }
