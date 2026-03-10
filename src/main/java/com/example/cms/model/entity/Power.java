@@ -36,7 +36,7 @@ public class Power {
 
     @OneToMany(mappedBy = "power")
     @Nullable
-    private List<CharacterPower> characterPower  = new ArrayList<>();
+    private List<CharacterPower> characterPower = new ArrayList<>();
 
 
 }

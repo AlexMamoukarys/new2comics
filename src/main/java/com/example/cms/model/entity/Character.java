@@ -43,5 +43,13 @@ public class Character {
     @OneToMany(mappedBy = "character")
     @Nullable
     private List<CharacterPower> characterPower  = new ArrayList<>();
+
+    @OneToMany(mappedBy = "character")
+    @Nullable
+    private List<CharacterTeam> characterTeam  = new ArrayList<>();
+
+    @OneToMany(mappedBy = "character")
+    @Nullable
+    private List<CharacterVolume> characterVolume  = new ArrayList<>();
 }
 

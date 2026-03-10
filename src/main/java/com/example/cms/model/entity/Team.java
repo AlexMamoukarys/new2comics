@@ -34,9 +34,9 @@ public class Team {
     @NotEmpty
     private String deck;
     
-    //@ManyToMany(mappedBy = "__")
-    //@Nullable
-    //private List<Volume> volumes = new ArrayList<>();
+    @OneToMany(mappedBy = "team")
+    @Nullable
+    private List<CharacterTeam> characterTeams = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name="publisherId")

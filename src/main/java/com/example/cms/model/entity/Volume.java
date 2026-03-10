@@ -28,11 +28,10 @@ public class Volume {
     @JoinColumn(name="publisherId")
     private Publisher publisher;
 
- 
-    // @ManyToMany(mappedBy = "characterId")
-    // @Nullable
-    // private List<Character> characters = new ArrayList<>();
-    //
+    @OneToMany(mappedBy = "volume")
+    @Nullable
+    private List<CharacterVolume> characterVolumes = new ArrayList<>();
+
     //@OneToMany(mappedBy = "___")
     //@Nullable
     //private List<Genre> genres = new ArrayList<>();
