@@ -52,8 +52,18 @@ public class Volume {
     @Nullable
     private List<VolumeTeam> volumeTeams = new ArrayList<>();
 
+    @OneToMany(mappedBy = "volume", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Nullable
+    private List<VolumeCharacter> volumeCharacter = new ArrayList<>();
+
+    @OneToMany(mappedBy = "volume", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Nullable
+    private List<VolumeGenre> volumeGenre = new ArrayList<>();
+
     // TODO uncomment and edit column name after making Publisher entity
     @ManyToOne
     @JoinColumn(name="publisherId")
     private Publisher publisher;
+
+
 }

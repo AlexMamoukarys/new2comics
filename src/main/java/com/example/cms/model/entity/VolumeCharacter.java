@@ -17,11 +17,11 @@ import java.util.Objects;
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = "volumeTeams")
-public class VolumeTeam {
+@Table(name = "volumeCharacters")
+public class VolumeCharacter {
 
     @EmbeddedId
-    VolumeTeamKey volumeTeamId;
+    VolumeCharacterKey volumeCharacterId;
 
     @ManyToOne
     @MapsId("volumeId")
@@ -30,10 +30,10 @@ public class VolumeTeam {
     private Volume volume;
 
     @ManyToOne
-    @MapsId("teamId")
-    @JoinColumn(name = "teamId")
-    @JsonIgnoreProperties({"volumeTeams"})
-    private Team team;
+    @MapsId("characterId")
+    @JoinColumn(name = "characterId")
+    @JsonIgnoreProperties({"volumeCharacter"})
+    private Character character;
 
 }
 
