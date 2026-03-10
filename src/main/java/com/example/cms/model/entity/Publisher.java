@@ -44,9 +44,9 @@ public class Publisher {
     //@Nullable
     //private List<Team> teams = new ArrayList<>();
 
-    @OneToMany(mappedBy = "publisher")
-    @Nullable
-    private List<Volume> volumes = new ArrayList<>();
+    // @OneToMany(mappedBy = "publisher")
+    // @Nullable
+    // private List<Volume> volumes = new ArrayList<>();
 
 }
 

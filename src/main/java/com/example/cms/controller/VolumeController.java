@@ -42,9 +42,9 @@ public class VolumeController {
         repository.deleteById(volumeId);
     }
     
-    @GetMapping("/volumes/search/{searchstring}")
-    List<Volume> searchVolume(@PathVariable("searchstring") String searchString) {
-        return repository.search(searchString);
+    @GetMapping("/volumes/search/{user_id}/{searchstring}")
+    List<Volume> searchVolume(@PathVariable("searchstring") String searchString, @PathVariable("user_id") long user_id) {
+        return repository.search(searchString, user_id);
     }
 
     @PostMapping("/volumes/incrementlikes/{id}")
