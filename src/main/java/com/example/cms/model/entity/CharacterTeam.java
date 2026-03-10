@@ -21,7 +21,7 @@ import java.util.Objects;
 public class CharacterTeam {
 
     @EmbeddedId
-    CharacterPowerKey characterTeamId;
+    CharacterTeamKey characterTeamId;
 
     @ManyToOne
     @MapsId("characterId")
