@@ -49,4 +49,3 @@ public class Publisher {
     // private List<Volume> volumes = new ArrayList<>();
 
 }
-

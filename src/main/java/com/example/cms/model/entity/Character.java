@@ -47,5 +47,10 @@ public class Character {
     //@ManyToMany(mappedBy = "teamId")
     //@Nullable
     //private List<Team> teams = new ArrayList<>();
-}
 
+    @OneToMany(mappedBy = "character", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Nullable
+    @JsonIgnore
+    private List<VolumeCharacter> volumeCharacters = new ArrayList<>();
+
+}
