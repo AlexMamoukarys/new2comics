@@ -38,6 +38,10 @@ public class Team {
     @Nullable
     private List<CharacterTeam> characterTeams = new ArrayList<>();
 
+    @OneToMany(mappedBy = "team")
+    @Nullable
+    private List<PublisherTeam> publisherTeams = new ArrayList<>();
+
     @ManyToOne
     @JoinColumn(name="publisherId")
     private Publisher publisher;
