@@ -40,13 +40,12 @@ public class Publisher {
     @NotEmpty
     private String image;
 
-    @OneToMany(mappedBy = "publisher")
-    @Nullable
-    private List<PublisherTeam> publisherTeams = new ArrayList<>();
+    //@ManyToMany(mappedBy = "teamId")
+    //@Nullable
+    //private List<Team> teams = new ArrayList<>();
 
     @OneToMany(mappedBy = "publisher")
     @Nullable
     private List<Volume> volumes = new ArrayList<>();
 
 }
-

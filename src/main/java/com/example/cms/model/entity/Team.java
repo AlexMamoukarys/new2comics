@@ -33,18 +33,13 @@ public class Team {
 
     @NotEmpty
     private String deck;
-    
-    @OneToMany(mappedBy = "team")
-    @Nullable
-    private List<CharacterTeam> characterTeams = new ArrayList<>();
 
-    @OneToMany(mappedBy = "team")
-    @Nullable
-    private List<PublisherTeam> publisherTeams = new ArrayList<>();
+    //@ManyToMany(mappedBy = "__")
+    //@Nullable
+    //private List<Volume> volumes = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name="publisherId")
     private Publisher publisher;
 
 }
-
