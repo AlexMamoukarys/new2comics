@@ -1,7 +1,12 @@
 package com.example.cms.controller;
 
+import com.example.cms.model.entity.LikedVolume;
+import com.example.cms.model.entity.SavedVolume;
 import com.example.cms.model.entity.Volume;
 import com.example.cms.model.repository.VolumeRepository;
+import com.example.cms.service.VolumeLikedService;
+import com.example.cms.service.VolumeSavedService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,9 +24,13 @@ import java.util.List;
 public class VolumeController {
     @Autowired
     private final VolumeRepository repository;
+    private final VolumeLikedService VolumeLikedService;
+    private final VolumeSavedService VolumeSavedService;
 
-    public VolumeController(VolumeRepository repository) {
+    public VolumeController(VolumeRepository repository, VolumeLikedService volumeLikedService, VolumeSavedService VolumeSavedService) {
         this.repository = repository;
+        this.VolumeLikedService = volumeLikedService;
+        this.VolumeSavedService = VolumeSavedService;
     }
 
     @GetMapping("/volumes")
@@ -47,8 +56,56 @@ public class VolumeController {
         return repository.search(searchString, user_id);
     }
 
-    @PostMapping("/volumes/incrementlikes/{id}")
-    void incrementLikes(@PathVariable("id") long id) {
-        repository.incrementLikes(id);
+    //@PostMapping("/volumes/incrementlikes/{id}")
+    //void incrementLikes(@PathVariable("id") long id) {
+    //    repository.incrementLikes(id);
+    //}
+
+
+    // Like endpoints
+
+    @PostMapping("/volumes/{volume_id}/tooglelike/{user_id}")
+    void toggleLikeVolume(@PathVariable("volume_id") long volumeId, @PathVariable("user_id") long userId) {
+        VolumeLikedService.toggleLikeVolume(userId, volumeId);
     }
+
+    @DeleteMapping("/volumes/{volume_id}/like/{user_id}")
+    void unlikeVolume(@PathVariable("volume_id") long volumeId, @PathVariable("user_id") long userId) {
+        VolumeLikedService.unlikeVolume(userId, volumeId);
+    }
+
+    @PostMapping("/volumes/{volume_id}/like/{user_id}")
+    void likeVolume(@PathVariable("volume_id") long volumeId, @PathVariable("user_id") long userId) {
+        VolumeLikedService.likeVolume(userId, volumeId);
+    }
+
+    @GetMapping("/volumes/liked/{user_id}")
+    List<LikedVolume> getLikedVolumesForUser(@PathVariable("user_id") long userId) {
+        return VolumeLikedService.getLikedVolumesForUser(userId);
+    }
+
+    // Save endpoints
+
+    @PostMapping("/volumes/{volume_id}/tooglesave/{user_id}")
+    void toggleSaveVolume(@PathVariable("volume_id") long volumeId, @PathVariable("user_id") long userId) {
+        VolumeSavedService.toggleSaveVolume(userId, volumeId);
+    }
+
+    @DeleteMapping("/volumes/{volume_id}/save/{user_id}")
+    void unsaveVolume(@PathVariable("volume_id") long volumeId, @PathVariable("user_id") long userId) {
+        VolumeSavedService.unsaveVolume(userId, volumeId);
+    }
+
+    @PostMapping("/volumes/{volume_id}/save/{user_id}")
+    void saveVolume(@PathVariable("volume_id") long volumeId, @PathVariable("user_id") long userId) {
+        VolumeSavedService.saveVolume(userId, volumeId);
+    }
+
+    @GetMapping("/volumes/saved/{user_id}")
+    List<SavedVolume> getSavedVolumesForUser(@PathVariable("user_id") long userId) {
+        return VolumeSavedService.getSavedVolumesForUser(userId);
+    }
+
+    
+
 }
