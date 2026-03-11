@@ -33,19 +33,22 @@ public class Volume {
 
     // TODO do we want @Nullable for anything else?
 
+    @NotEmpty
     private int numIssues;
 
     private int numLikes;
 
-    private String deck;
+    @Nullable
+    private String description;
 
 //    @OneToOne
 //    @JoinColumn(name = "first_issue_id")
 //    private Issue firstIssue;
 
-
+    @NotEmpty
     private int startYear;
 
+    @NotEmpty
     private String image;
 
     @OneToMany(mappedBy = "volume", cascade = CascadeType.ALL, orphanRemoval = true)

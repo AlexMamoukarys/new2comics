@@ -24,4 +24,7 @@ public class Issue {
     @NotEmpty
     private String deck;
 
+    @NotEmpty
+    private String description;
+
 }
