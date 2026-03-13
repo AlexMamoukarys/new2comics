@@ -7,6 +7,7 @@ PROTOTYPE SPECIFICATIONS
 - Relationships with full CRUD: preferredCharacter, preferredGenre, preferredPublisher, preferredTeam
 - Other entities have partial CRUD (full CRUD not yet needed)
 - User authentication not yet implemented: CRUD operations that are conditional on user logins currently have a default user_id of 0
+- User login page does not work, it is a placeholder for when we learn to implement authentication
 - Profile page: clicking checkboxes then clicking the Submit button adds the users preferences, which are then used in searching on the Browse page (this is a temporary solution to populating user preferences)
 - Browse page: can search by genre, publisher, volume (aka comic series), team. Results will be sorted by user preferences. See VolumeRepository.java for the SQL query
 - Home page: clicking a genre or universe (aka publisher) button leads to the Browse page with the genre name being entered into the search bar
