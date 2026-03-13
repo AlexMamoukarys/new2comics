@@ -22,6 +22,6 @@ public interface GenreRepository extends JpaRepository<Genre, Long> {
 
     @Modifying
     @Transactional
-    @Query("UPDATE genres g SET g.name = :name WHERE g.id = :id")
+    @Query(value = "UPDATE genres g SET g.name = :name WHERE g.id = :id", nativeQuery = true)
     void changeName(@Param("id") Long id, @Param("name") String name);
 }
