@@ -58,7 +58,7 @@ INSERT INTO teams(id, name, deck, publisherId) VALUES(1, 'Avengers', 'b', 1);
 INSERT INTO teams(id, name, deck, publisherId) VALUES(2, 'Justice League', 'b', 2);
 INSERT INTO teams(id, name, deck, publisherId) VALUES(3, 'Fantastic Four', 'b', 1);
 
-INSERT INTO volumes(id, name, numIssues, numLikes, deck, startYear, image, publisherId) VALUES(1, 'Batman #1', 2, 4, 'Blah cheese blah', 2000, 'batman.png', 1);
+INSERT INTO volumes(id, name, numIssues, numLikes, deck, startYear, image, publisherId) VALUES(1, 'Batman #1', 2, 4, 'Blah blah blah', 2000, 'batman.png', 1);
 INSERT INTO volumes(id, name, numIssues, numLikes, deck, startYear, image, publisherId) VALUES(2, 'Spiderman #1', 2, 2, 'Blah blah blah', 2000, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRby1SM-CGg_hYiSMAtS2NvMm2nV8xrKBjm_w&s',2);
 INSERT INTO volumes(id, name, numIssues, numLikes, deck, startYear, image, publisherId) VALUES(3, 'Spiderman #2', 2, 3, 'Blah blah blah', 2000, 'batman.png', 2);
 INSERT INTO volumes(id, name, numIssues, numLikes, deck, startYear, image, publisherId) VALUES(4, 'Spiderman #3', 2, 6, 'Blah blah blah', 2000, 'batman.png', 3);
@@ -66,7 +66,7 @@ INSERT INTO volumes(id, name, numIssues, numLikes, deck, startYear, image, publi
 
 INSERT INTO users(id) VALUES(0);
 
-INSERT INTO preferred_publishers(id, userId, publisherId) VALUES(1, 0, 3);
+INSERT INTO preferred_publishers(id, userId, publisherId) VALUES(101, 0, 3);
 -- INSERT INTO preferred_publishers(id, userId, publisherId) VALUES(2, 0, 3);
 
 -- =====================================================
