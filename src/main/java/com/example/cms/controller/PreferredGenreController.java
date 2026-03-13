@@ -1,5 +1,6 @@
 package com.example.cms.controller;
 
+import com.example.cms.model.entity.PreferredCharacter;
 import com.example.cms.model.entity.PreferredGenre;
 import com.example.cms.model.repository.PreferredGenreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,16 @@ public class PreferredGenreController {
     @DeleteMapping("/preferredgenres/{id}")
     void deleteGenre(@PathVariable("id") Long genreId) {
         repository.deleteById(genreId);
+    }
+
+    @PutMapping("/preferredgenres/{id}")
+    PreferredGenre updatePreferredGenre(@PathVariable("id") long id, @RequestBody PreferredGenre updatedGenre) {
+        
+        PreferredGenre relation = repository.findById(id).orElseThrow(() -> new RuntimeException("Relationship not found with id " + id));
+
+        relation.setUser(updatedGenre.getUser());
+        relation.setGenre(updatedGenre.getGenre());
+        return repository.save(relation);
+        
     }
 }

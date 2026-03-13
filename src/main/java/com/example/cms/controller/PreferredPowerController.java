@@ -1,5 +1,6 @@
 package com.example.cms.controller;
 
+import com.example.cms.model.entity.PreferredCharacter;
 import com.example.cms.model.entity.PreferredPower;
 import com.example.cms.model.repository.PreferredPowerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,16 @@ public class PreferredPowerController {
     @DeleteMapping("/preferredpowers/{id}")
     void deletePower(@PathVariable("id") Long powerId) {
         repository.deleteById(powerId);
+    }
+
+    @PutMapping("/preferredpowers/{id}")
+    PreferredPower updatePreferredPower(@PathVariable("id") long id, @RequestBody PreferredPower updatedPower) {
+        
+        PreferredPower relation = repository.findById(id).orElseThrow(() -> new RuntimeException("Relationship not found with id " + id));
+
+        relation.setUser(updatedPower.getUser());
+        relation.setPower(updatedPower.getPower());
+        return repository.save(relation);
+        
     }
 }

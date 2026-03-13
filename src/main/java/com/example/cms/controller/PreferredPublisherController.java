@@ -1,5 +1,6 @@
 package com.example.cms.controller;
 
+import com.example.cms.model.entity.PreferredCharacter;
 import com.example.cms.model.entity.PreferredPublisher;
 import com.example.cms.model.repository.PreferredPublisherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,16 @@ public class PreferredPublisherController {
     @DeleteMapping("/preferredpublishers/{id}")
     void deletePublisher(@PathVariable("id") Long publisherId) {
         repository.deleteById(publisherId);
+    }
+
+    @PutMapping("/preferredpublishers/{id}")
+    PreferredPublisher updatePreferredPublisher(@PathVariable("id") long id, @RequestBody PreferredPublisher updatedPublisher) {
+        
+        PreferredPublisher relation = repository.findById(id).orElseThrow(() -> new RuntimeException("Relationship not found with id " + id));
+
+        relation.setUser(updatedPublisher.getUser());
+        relation.setPublisher(updatedPublisher.getPublisher());
+        return repository.save(relation);
+        
     }
 }
