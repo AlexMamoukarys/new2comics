@@ -51,4 +51,22 @@ public class VolumeController {
     void incrementLikes(@PathVariable("id") long id) {
         repository.incrementLikes(id);
     }
+
+    @PutMapping("/volumes/{id}")
+    Volume updateVolume(@RequestBody Volume updatedVolume, @PathVariable("id") long id) {
+        return repository.findById(id)
+                .map(volume -> {
+                    volume.setName(updatedVolume.getName());
+                    volume.setNumIssues(updatedVolume.getNumIssues());
+                    volume.setNumLikes(updatedVolume.getNumLikes());
+                    volume.setDeck(updatedVolume.getDeck());
+                    volume.setStartYear(updatedVolume.getStartYear());
+                    volume.setImage(updatedVolume.getImage());
+                    return repository.save(volume);
+                })
+                .orElseGet(() -> {
+                    updatedVolume.setId(id);
+                    return repository.save(updatedVolume);
+                });
+    }
 }

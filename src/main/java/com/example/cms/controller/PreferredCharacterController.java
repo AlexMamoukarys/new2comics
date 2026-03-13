@@ -1,6 +1,7 @@
 package com.example.cms.controller;
 
 import com.example.cms.model.entity.PreferredCharacter;
+import com.example.cms.model.entity.Volume;
 import com.example.cms.model.repository.PreferredCharacterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -37,5 +38,19 @@ public class PreferredCharacterController {
     @DeleteMapping("/preferredcharacters/{id}")
     void deleteCharacter(@PathVariable("id") Long characterId) {
         repository.deleteById(characterId);
+    }
+
+    @PutMapping("/preferredcharacters/{id}")
+    PreferredCharacter updatePreferredCharacter(@RequestBody PreferredCharacter newPreferredCharacter, @PathVariable("id") long id) {
+        return repository.findById(id)
+                .map(prefChar -> {
+                    prefChar.setUser(newPreferredCharacter.getUser());
+                    prefChar.setCharacter(newPreferredCharacter.getCharacter());
+                    return repository.save(prefChar);
+                })
+                .orElseGet(() -> {
+                    newPreferredCharacter.setId(id);
+                    return repository.save(newPreferredCharacter);
+                });
     }
 }

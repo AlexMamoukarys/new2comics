@@ -1,6 +1,7 @@
 package com.example.cms.controller;
 
 import com.example.cms.model.entity.PreferredTeam;
+import com.example.cms.model.entity.PreferredTeam;
 import com.example.cms.model.repository.PreferredTeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -37,5 +38,19 @@ public class PreferredTeamController {
     @DeleteMapping("/preferredteams/{id}")
     void deleteTeam(@PathVariable("id") Long teamId) {
         repository.deleteById(teamId);
+    }
+
+    @PutMapping("/preferredteams/{id}")
+    PreferredTeam updatePreferredTeam(@RequestBody PreferredTeam newPreferredTeam, @PathVariable("id") long id) {
+        return repository.findById(id)
+                .map(prefTeam -> {
+                    prefTeam.setUser(newPreferredTeam.getUser());
+                    prefTeam.setTeam(newPreferredTeam.getTeam());
+                    return repository.save(prefTeam);
+                })
+                .orElseGet(() -> {
+                    newPreferredTeam.setId(id);
+                    return repository.save(newPreferredTeam);
+                });
     }
 }

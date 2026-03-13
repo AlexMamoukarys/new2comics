@@ -1,6 +1,7 @@
 package com.example.cms.controller;
 
 import com.example.cms.model.entity.PreferredGenre;
+import com.example.cms.model.entity.PreferredGenre;
 import com.example.cms.model.repository.PreferredGenreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -37,5 +38,19 @@ public class PreferredGenreController {
     @DeleteMapping("/preferredgenres/{id}")
     void deleteGenre(@PathVariable("id") Long genreId) {
         repository.deleteById(genreId);
+    }
+
+    @PutMapping("/preferredgenres/{id}")
+    PreferredGenre updatePreferredGenre(@RequestBody PreferredGenre newPreferredGenre, @PathVariable("id") long id) {
+        return repository.findById(id)
+                .map(prefGen -> {
+                    prefGen.setUser(newPreferredGenre.getUser());
+                    prefGen.setGenre(newPreferredGenre.getGenre());
+                    return repository.save(prefGen);
+                })
+                .orElseGet(() -> {
+                    newPreferredGenre.setId(id);
+                    return repository.save(newPreferredGenre);
+                });
     }
 }
