@@ -38,4 +38,15 @@ public class PreferredCharacterController {
     void deleteCharacter(@PathVariable("id") Long characterId) {
         repository.deleteById(characterId);
     }
+
+    @PutMapping("/preferredcharacters/{id}")
+    PreferredCharacter updatePreferredCharacter(@PathVariable("id") long id, @RequestBody PreferredCharacter updatedCharacter) {
+        
+        PreferredCharacter relation = repository.findById(id).orElseThrow(() -> new RuntimeException("Relationship not found with id " + id));
+
+        relation.setUser(updatedCharacter.getUser());
+        relation.setCharacter(updatedCharacter.getCharacter());
+        return repository.save(relation);
+        
+    }
 }
