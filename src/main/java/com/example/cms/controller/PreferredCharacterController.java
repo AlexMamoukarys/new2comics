@@ -1,6 +1,7 @@
 package com.example.cms.controller;
 
 import com.example.cms.model.entity.PreferredCharacter;
+import com.example.cms.model.entity.Volume;
 import com.example.cms.model.repository.PreferredCharacterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;

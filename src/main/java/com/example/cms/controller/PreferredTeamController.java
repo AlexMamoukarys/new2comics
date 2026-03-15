@@ -2,6 +2,7 @@ package com.example.cms.controller;
 
 import com.example.cms.model.entity.PreferredCharacter;
 import com.example.cms.model.entity.PreferredTeam;
+import com.example.cms.model.entity.PreferredTeam;
 import com.example.cms.model.repository.PreferredTeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
