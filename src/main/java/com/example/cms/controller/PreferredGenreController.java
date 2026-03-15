@@ -1,5 +1,6 @@
 package com.example.cms.controller;
 
+import com.example.cms.model.entity.PreferredCharacter;
 import com.example.cms.model.entity.PreferredGenre;
 import com.example.cms.model.entity.PreferredGenre;
 import com.example.cms.model.repository.PreferredGenreRepository;
@@ -41,16 +42,13 @@ public class PreferredGenreController {
     }
 
     @PutMapping("/preferredgenres/{id}")
-    PreferredGenre updatePreferredGenre(@RequestBody PreferredGenre newPreferredGenre, @PathVariable("id") long id) {
-        return repository.findById(id)
-                .map(prefGen -> {
-                    prefGen.setUser(newPreferredGenre.getUser());
-                    prefGen.setGenre(newPreferredGenre.getGenre());
-                    return repository.save(prefGen);
-                })
-                .orElseGet(() -> {
-                    newPreferredGenre.setId(id);
-                    return repository.save(newPreferredGenre);
-                });
+    PreferredGenre updatePreferredGenre(@PathVariable("id") long id, @RequestBody PreferredGenre updatedGenre) {
+        
+        PreferredGenre relation = repository.findById(id).orElseThrow(() -> new RuntimeException("Relationship not found with id " + id));
+
+        relation.setUser(updatedGenre.getUser());
+        relation.setGenre(updatedGenre.getGenre());
+        return repository.save(relation);
+        
     }
 }

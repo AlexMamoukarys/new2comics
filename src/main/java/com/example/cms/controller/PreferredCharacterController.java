@@ -41,16 +41,13 @@ public class PreferredCharacterController {
     }
 
     @PutMapping("/preferredcharacters/{id}")
-    PreferredCharacter updatePreferredCharacter(@RequestBody PreferredCharacter newPreferredCharacter, @PathVariable("id") long id) {
-        return repository.findById(id)
-                .map(prefChar -> {
-                    prefChar.setUser(newPreferredCharacter.getUser());
-                    prefChar.setCharacter(newPreferredCharacter.getCharacter());
-                    return repository.save(prefChar);
-                })
-                .orElseGet(() -> {
-                    newPreferredCharacter.setId(id);
-                    return repository.save(newPreferredCharacter);
-                });
+    PreferredCharacter updatePreferredCharacter(@PathVariable("id") long id, @RequestBody PreferredCharacter updatedCharacter) {
+        
+        PreferredCharacter relation = repository.findById(id).orElseThrow(() -> new RuntimeException("Relationship not found with id " + id));
+
+        relation.setUser(updatedCharacter.getUser());
+        relation.setCharacter(updatedCharacter.getCharacter());
+        return repository.save(relation);
+        
     }
 }

@@ -112,5 +112,11 @@ public interface VolumeRepository extends JpaRepository<Volume, Long> {
     @Query(value = "UPDATE volumes SET numLikes = numLikes + 1 WHERE id = :id", nativeQuery = true)
     void incrementLikes(@Param("id") long id); 
 
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE volumes SET numLikes = numLikes - 1 WHERE id = :id AND numLikes > 0", nativeQuery = true)
+    void decrementLikes(@Param("id") long id);
 }
+
+
 

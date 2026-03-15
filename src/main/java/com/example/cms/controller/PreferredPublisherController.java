@@ -1,5 +1,6 @@
 package com.example.cms.controller;
 
+import com.example.cms.model.entity.PreferredCharacter;
 import com.example.cms.model.entity.PreferredPublisher;
 import com.example.cms.model.entity.PreferredPublisher;
 import com.example.cms.model.repository.PreferredPublisherRepository;
@@ -39,18 +40,15 @@ public class PreferredPublisherController {
     void deletePublisher(@PathVariable("id") Long publisherId) {
         repository.deleteById(publisherId);
     }
-    
+
     @PutMapping("/preferredpublishers/{id}")
-    PreferredPublisher updatePreferredPublisher(@RequestBody PreferredPublisher newPreferredPublisher, @PathVariable("id") long id) {
-        return repository.findById(id)
-                .map(prefPub -> {
-                    prefPub.setUser(newPreferredPublisher.getUser());
-                    prefPub.setPublisher(newPreferredPublisher.getPublisher());
-                    return repository.save(prefPub);
-                })
-                .orElseGet(() -> {
-                    newPreferredPublisher.setId(id);
-                    return repository.save(newPreferredPublisher);
-                });
+    PreferredPublisher updatePreferredPublisher(@PathVariable("id") long id, @RequestBody PreferredPublisher updatedPublisher) {
+        
+        PreferredPublisher relation = repository.findById(id).orElseThrow(() -> new RuntimeException("Relationship not found with id " + id));
+
+        relation.setUser(updatedPublisher.getUser());
+        relation.setPublisher(updatedPublisher.getPublisher());
+        return repository.save(relation);
+        
     }
 }

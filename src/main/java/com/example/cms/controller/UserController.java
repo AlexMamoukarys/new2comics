@@ -312,9 +312,11 @@ public class UserController {
         return preferredTeam;
     }
 
-    @DeleteMapping("/users/{id}")
-    void deleteUser(@PathVariable("id") Long Id) {
-        repository.deleteById(Id);
+    @DeleteMapping("/users/{userId}")                          // Delete
+    void deleteUser(@PathVariable("userId") Long userId) {
+        repository.deleteById(userId);
     }
+
+
 
 }

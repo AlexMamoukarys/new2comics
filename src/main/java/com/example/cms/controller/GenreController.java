@@ -1,9 +1,7 @@
 package com.example.cms.controller;
 
-import com.example.cms.model.entity.Genre;
-import com.example.cms.model.entity.Volume;
-import com.example.cms.model.repository.CharacterRepository;
-import com.example.cms.model.repository.GenreRepository;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,7 +12,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import com.example.cms.model.entity.Genre;
+import com.example.cms.model.entity.Volume;
+import com.example.cms.model.repository.GenreRepository;
 
 @CrossOrigin
 @RestController
@@ -31,9 +31,26 @@ public class GenreController {
         return repository.findAll();
     }
 
-    @GetMapping("/genres/search/{searchstring}")
+    @GetMapping("/genres/search/{searchstring}")            // Read
     List<Genre> searchGenres(@PathVariable("searchstring") String searchString) {
         return repository.search(searchString);
     }
+
+    @PostMapping("/genres")                                 // Create
+    Genre createGenre(@RequestBody Genre newGenre) {
+        return repository.save(newGenre);
+    }
+
+    @DeleteMapping("/genres/{id}")                          // Delete
+    void deleteGenre(@PathVariable("id") Long genreId) {
+        repository.deleteById(genreId);
+    }
+
+    @PutMapping("/genres/changeName/{id}/{name}")                 // Update
+    void changeName(@PathVariable("id") long id, @PathVariable("name") String name) {
+        repository.changeName(id, name);
+    }
+
+
     
 }
