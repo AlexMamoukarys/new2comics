@@ -26,6 +26,7 @@ import com.example.cms.model.entity.Volume;
 public class Team {
 
     @Id
+    @NotEmpty
     private long id;
 
     @NotEmpty
