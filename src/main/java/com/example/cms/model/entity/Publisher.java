@@ -26,15 +26,16 @@ import com.example.cms.model.entity.Volume;
 public class Publisher {
 
     @Id
+    @NotEmpty
     private long id;
 
     @NotEmpty
     private String name;
 
-    @NotEmpty
+    @Nullable
     private String deck;
 
-    @NotEmpty
+    @Nullable
     private String description;
 
     @NotEmpty

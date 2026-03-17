@@ -26,18 +26,19 @@ import com.example.cms.model.entity.Volume;
 public class Character {
 
     @Id
+    @NotEmpty
     private long id;
 
     @NotEmpty
     private String name;
 
-    @NotEmpty
+    @Nullable
     private String deck;
 
     @NotEmpty
     private String gender;
 
-    @NotEmpty
+    @Nullable
     private String origin;
 
     //@ManyToMany(mappedBy = "powerId")
@@ -47,10 +48,5 @@ public class Character {
     //@ManyToMany(mappedBy = "teamId")
     //@Nullable
     //private List<Team> teams = new ArrayList<>();
-
-    @OneToMany(mappedBy = "character", cascade = CascadeType.ALL, orphanRemoval = true)
-    @Nullable
-    @JsonIgnore
-    private List<VolumeCharacter> volumeCharacters = new ArrayList<>();
-
 }
+
