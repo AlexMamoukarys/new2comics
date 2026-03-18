@@ -39,7 +39,7 @@ public class Volume {
     private int numLikes;
 
     @Nullable
-    private String description;
+    private String deck;
 
 //    @OneToOne
 //    @JoinColumn(name = "first_issue_id")

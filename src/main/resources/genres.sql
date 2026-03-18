@@ -65,17 +65,13 @@ INSERT INTO genres (deck, id, name) VALUES (' The View Askewniverse is the name 
 INSERT INTO genres (deck, id, name) VALUES ('Better known as "Cosplay", Costumed Roleplaying is a custom of dressing like fictional characters.', '55907', 'Cosplay');
 INSERT INTO genres (deck, id, name) VALUES ('An issue of a comic which usually contains pin-up style art.', '55913', 'Swimsuit Issue');
 INSERT INTO genres (deck, id, name) VALUES ('Universe from DC Comics focusing on Pulp and Noir stories.', '55914', 'First Wave');
-INSERT INTO genres (deck, id, name) VALUES ('An Open Source Character is a concept where a creator or group of creators create a character for express use in comic books or other media without concern of payment or other compensation.  
-
-An Open Source Character, slightly similar to the concept of Public Domain Character, is free to use by anyone, anywhere, for any purpose.', '55918', 'Open Source Character');
+INSERT INTO genres (deck, id, name) VALUES ('An Open Source Character is a concept where a creator or group of creators create a character for express use in comic books or other media without concern of payment or other compensation. An Open Source Character, slightly similar to the concept of Public Domain Character, is free to use by anyone, anywhere, for any purpose.', '55918', 'Open Source Character');
 INSERT INTO genres (deck, id, name) VALUES ('The comic industry of Australia.', '55925', 'Australian Comics');
 INSERT INTO genres (deck, id, name) VALUES ('''Second Feature'' was a branding from DC Comics for issues with a second story.', '55937', 'Second Feature');
 INSERT INTO genres (deck, id, name) VALUES ('The Italian comic industry.', '55952', 'Fumetti');
 INSERT INTO genres (deck, id, name) VALUES ('Real-world philosophies and movements that sometimes make their way into comics, either as background or primary focus.', '55953', 'Esoterica in Comics');
 INSERT INTO genres (deck, id, name) VALUES ('The Ignatz Awards are given in recognition to creators for their outstanding contributions in the Small Press comics publishing arena. ', '55968', 'Ignatz Awards');
-INSERT INTO genres (deck, id, name) VALUES ('The  Small Press Expo is a small press and alternative comics convention featuring comics and zines in these genres.  
-
-It has taken place since 1997 in Bethesda, Maryland, and occurs in either September or October, and the Ignatz Awards are also handed out at the convention. ', '55969', 'Small Press Expo (SPX)');
+INSERT INTO genres (deck, id, name) VALUES ('The  Small Press Expo is a small press and alternative comics convention featuring comics and zines in these genres. It has taken place since 1997 in Bethesda, Maryland, and occurs in either September or October, and the Ignatz Awards are also handed out at the convention. ', '55969', 'Small Press Expo (SPX)');
 INSERT INTO genres (deck, id, name) VALUES ('The Harvey Awards are given out in various categories to creators involved in the comic book industry.  They are named after Harvey Kurtzman and were founded by Gary Groth (president of Fantagraphics) in 1988 to continue on from the discontinued Kirby Awards.', '55975', 'Harvey Awards');
 INSERT INTO genres (deck, id, name) VALUES ('Previously a rarity in comics, modern times have since seen an increase in openly gay characters to reflect a more modern and accurate portrayal of society.', '55999', 'Homosexuality in Comics');
 INSERT INTO genres (deck, id, name) VALUES ('Beware: It''s Assistant Editors'' Month! Don''t Say We Didn''t Warn You!', '56004', 'Assistant Editors'' Month');
@@ -87,8 +83,7 @@ INSERT INTO genres (deck, id, name) VALUES ('A science fiction franchise compris
 INSERT INTO genres (deck, id, name) VALUES ('Specifically stories about the sport/art of dancing in all its various forms outside of types of dance that branch out into their own distinct subcategory like ballet.', '56042', 'Dancing');
 INSERT INTO genres (deck, id, name) VALUES ('Screen Comix is a line by Random House publisher.', '56052', 'Screen Comix');
 INSERT INTO genres (deck, id, name) VALUES ('Black Comedy is found throughout many forms of fiction and comics have featured plenty of Black Comedy from different writers. A lot of the black comedy in comics tends to be found in mature comics.', '56054', 'Black Comedy');
-INSERT INTO genres (deck, id, name) VALUES ('DC Comics'' controversial 2011 reboot of its entire line of ongoing comic books following the universe altering event, Flashpoint.
-After Doomsday Clock, it was redefined as Earth-52.', '56061', 'The New 52');
+INSERT INTO genres (deck, id, name) VALUES ('DC Comics'' controversial 2011 reboot of its entire line of ongoing comic books following the universe altering event, Flashpoint. After Doomsday Clock, it was redefined as Earth-52.', '56061', 'The New 52');
 INSERT INTO genres (deck, id, name) VALUES ('Marvel is proud to announce the all-new Marvel''s Greatest Comics imprint, spotlighting Marvel''s most-acclaimed series with new printings of these must-read issues priced at only one dollar each! This bold new venture, launching in March 2010, offers a unofficial relaunch of marvel''s major characters.', '56075', 'Marvel''s Greatest Comics');
 INSERT INTO genres (deck, id, name) VALUES ('Superpowers are abilities uncommon to the average human.  There are many different types of superpowers though most are physical, mental, technological, or mystical.  Powers can be inherited from parents, bestowed by a higher power, acquired by exposure to an outside force or passed to them by others.', '56079', 'Superpowers');
 INSERT INTO genres (deck, id, name) VALUES ('The UK-based Eagle Awards were one of comic''s longest-established award ceremonies, launching in 1977 and continuing annually (with some interruptions and name changes) until 2014.', '56081', 'Eagle Awards');
