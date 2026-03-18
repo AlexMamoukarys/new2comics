@@ -114,7 +114,7 @@ public class VolumeController {
 
         volume.setName(updatedVolume.getName());
         volume.setNumIssues(updatedVolume.getNumIssues());
-        volume.setDeck(updatedVolume.getDeck());
+        //volume.setDeck(updatedVolume.getDeck());
         volume.setStartYear(updatedVolume.getStartYear());
         volume.setImage(updatedVolume.getImage());
         volume.setNumLikes(updatedVolume.getNumLikes());
