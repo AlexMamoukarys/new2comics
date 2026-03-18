@@ -2,6 +2,8 @@ package com.example.cms.model.repository;
 
 import java.util.List;
 
+import com.example.cms.model.entity.Genre;
+import com.example.cms.model.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -13,5 +15,5 @@ import com.example.cms.model.entity.PreferredGenre;
 
 @Repository
 public interface PreferredGenreRepository extends JpaRepository<PreferredGenre, Long> {
-    
+    boolean existsByUserAndGenre(User user, Genre genre);
 }
