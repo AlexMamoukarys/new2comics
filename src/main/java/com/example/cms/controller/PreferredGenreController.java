@@ -66,6 +66,11 @@ public class PreferredGenreController {
         repository.deleteById(genreId);
     }
 
+    @DeleteMapping("/preferredgenres/{user_id}/{genre_id}")
+    void foreignDeletePrefGenre(@PathVariable("genre_id") Long genreId, @PathVariable("user_id") Long userId) {
+        repository.foreignDelete(genreId, userId);
+    }
+
     @PutMapping("/preferredgenres/{id}")
     PreferredGenre updatePreferredGenre(@PathVariable("id") long id, @RequestBody PreferredGenre updatedGenre) {
         

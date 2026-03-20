@@ -51,4 +51,9 @@ public class PreferredTeamController {
         return repository.save(relation);
         
     }
+
+    @DeleteMapping("/preferredteams/{user_id}/{teams_id}")
+    void foreignDeletePrefTeam(@PathVariable("teams_id") Long teamsId, @PathVariable("user_id") Long userId) {
+        repository.foreignDelete(teamsId, userId);
+    }
 }

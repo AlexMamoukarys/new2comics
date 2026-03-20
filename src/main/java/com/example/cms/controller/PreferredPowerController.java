@@ -1,6 +1,6 @@
 package com.example.cms.controller;
 
-import com.example.cms.model.entity.PreferredCharacter;
+import com.example.cms.model.entity.PreferredPower;
 import com.example.cms.model.entity.PreferredPower;
 import com.example.cms.model.repository.PreferredPowerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,4 +50,9 @@ public class PreferredPowerController {
         return repository.save(relation);
         
     }
-}
+    
+    @DeleteMapping("/preferredpowers/{user_id}/{power_id}")
+    void foreignDeletePrefPower(@PathVariable("power_id") Long powerId, @PathVariable("user_id") Long userId) {
+        repository.foreignDelete(powerId, userId);
+    }
+}   

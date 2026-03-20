@@ -8,10 +8,15 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.cms.model.entity.PreferredPower;
 
 @Repository
 public interface PreferredPowerRepository extends JpaRepository<PreferredPower, Long> {
     
+    @Modifying
+    @Transactional
+    @Query(value = "DELETE FROM preferred_powers WHERE userId=:userId AND powerId = :powerId ", nativeQuery = true)
+    void foreignDelete(@PathVariable("power_id") Long powerId, @PathVariable("user_id") Long userId);
 }
