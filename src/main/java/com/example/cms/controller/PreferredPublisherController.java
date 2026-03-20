@@ -1,6 +1,6 @@
 package com.example.cms.controller;
 
-import com.example.cms.model.entity.PreferredPubacter;
+import com.example.cms.model.entity.PreferredPublisher;
 import com.example.cms.model.entity.PreferredPublisher;
 import com.example.cms.model.entity.PreferredPublisher;
 import com.example.cms.model.repository.PreferredPublisherRepository;

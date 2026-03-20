@@ -1,6 +1,6 @@
 package com.example.cms.controller;
 
-import com.example.cms.model.entity.PreferredPoweracter;
+import com.example.cms.model.entity.PreferredPower;
 import com.example.cms.model.entity.PreferredPower;
 import com.example.cms.model.repository.PreferredPowerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
