@@ -50,4 +50,9 @@ public class PreferredCharacterController {
         return repository.save(relation);
         
     }
+
+    @DeleteMapping("/preferredcharacters/{user_id}/{char_id}")
+    void foreignDeletePrefChar(@PathVariable("char_id") Long charId, @PathVariable("user_id") Long userId) {
+        repository.foreignDelete(charId, userId);
+    }
 }

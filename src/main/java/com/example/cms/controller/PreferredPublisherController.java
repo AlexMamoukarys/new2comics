@@ -1,6 +1,6 @@
 package com.example.cms.controller;
 
-import com.example.cms.model.entity.PreferredCharacter;
+import com.example.cms.model.entity.PreferredPubacter;
 import com.example.cms.model.entity.PreferredPublisher;
 import com.example.cms.model.entity.PreferredPublisher;
 import com.example.cms.model.repository.PreferredPublisherRepository;
@@ -50,5 +50,10 @@ public class PreferredPublisherController {
         relation.setPublisher(updatedPublisher.getPublisher());
         return repository.save(relation);
         
+    }
+
+    @DeleteMapping("/preferredpublishers/{user_id}/{publishers_id}")
+    void foreignDeletePrefPub(@PathVariable("publishers_id") Long publishersId, @PathVariable("user_id") Long userId) {
+        repository.foreignDelete(publishersId, userId);
     }
 }
