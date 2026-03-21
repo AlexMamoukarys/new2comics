@@ -64,7 +64,7 @@ public abstract class PreferredController<T extends PreferredRepository<P>, R ex
     }
 
     @DeleteMapping("/{user_id}/{id}")
-    void foreignDeletePrefChar(@PathVariable("user_id") Long userId, @PathVariable("id") Long id) {
+    void foreignDeletePreferred(@PathVariable("user_id") Long userId, @PathVariable("id") Long id) {
         preferredDeleteService.foreignDelete(id, userId, tableName, preferenceColumn);
     }
 
