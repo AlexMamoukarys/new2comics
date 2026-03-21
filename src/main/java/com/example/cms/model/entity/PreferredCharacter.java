@@ -17,11 +17,16 @@ import lombok.Setter;
 @Setter
 @Table(name = "preferred_characters")
 public class PreferredCharacter extends Preferred<Character> {
-    @ManyToOne
-    @JoinColumn(name="characterId")
-    private Character character;
 
     public static final String PATH = "/preferredcharacters";
+    public static final String TABLE = "preferred_characters";
+    public static final String NAME_ID = "characterId";
+
+    @ManyToOne
+    @JoinColumn(name=NAME_ID)
+    private Character character;
+
+
 
     public PreferredCharacter(User user, Character character) {
         setUser(user);

@@ -1,28 +1,27 @@
 package com.example.cms.controller;
 
 import com.example.cms.controller.exceptions.UserNotFoundException;
-import com.example.cms.model.entity.Genre;
 import com.example.cms.model.entity.Preferred;
 import com.example.cms.model.entity.Property;
 import com.example.cms.model.entity.User;
-import com.example.cms.model.repository.GenreRepository;
 import com.example.cms.model.repository.PreferredRepository;
 import com.example.cms.model.repository.PropertyRepository;
 import com.example.cms.model.repository.UserRepository;
+import com.example.cms.service.PreferredDeleteService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
 public abstract class PreferredController<T extends PreferredRepository<P>, R extends PropertyRepository<I>, P extends Preferred<I>, I extends Property> {
     private final T repository;
+    private final String tableName;
+    private final String preferenceColumn;
 
     @Autowired
     private UserRepository userRepository;
@@ -30,8 +29,13 @@ public abstract class PreferredController<T extends PreferredRepository<P>, R ex
     @Autowired
     private R iRepository;
 
-    protected PreferredController(T repository) {
+    @Autowired
+    private PreferredDeleteService preferredDeleteService;
+
+    protected PreferredController(T repository, String tableName, String preferenceColumn) {
         this.repository = repository;
+        this.tableName = tableName;
+        this.preferenceColumn = preferenceColumn;
     }
 
     @GetMapping()
@@ -57,6 +61,11 @@ public abstract class PreferredController<T extends PreferredRepository<P>, R ex
     @DeleteMapping("/{id}")
     public void deletePreferred(@PathVariable("id") Long id) {
         repository.deleteById(id);
+    }
+
+    @DeleteMapping("/{user_id}/{id}")
+    void foreignDeletePrefChar(@PathVariable("user_id") Long userId, @PathVariable("id") Long id) {
+        preferredDeleteService.foreignDelete(id, userId, tableName, preferenceColumn);
     }
 
     @PutMapping("/{id}")

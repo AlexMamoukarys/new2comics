@@ -14,6 +14,10 @@ import javax.validation.constraints.NotEmpty;
 @Setter
 public abstract class Preferred<T> {
 
+    public static String PATH;
+    public static String TABLE;
+    public static String NAME_ID;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

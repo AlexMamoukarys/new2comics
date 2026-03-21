@@ -14,11 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class PreferredCharacterController extends PreferredController<PreferredCharacterRepository, CharacterRepository, PreferredCharacter, Character> {
 
     public PreferredCharacterController(PreferredCharacterRepository repository) {
-        super(repository);
-    }
-
-    @DeleteMapping("/preferredcharacters/{user_id}/{char_id}")
-    void foreignDeletePrefChar(@PathVariable("char_id") Long charId, @PathVariable("user_id") Long userId) {
-        repository.foreignDelete(charId, userId);
+        super(repository, PreferredCharacter.TABLE, PreferredCharacter.NAME_ID);
     }
 }
