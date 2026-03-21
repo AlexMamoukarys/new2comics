@@ -11,12 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.cms.model.entity.PreferredCharacter;
+import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PreferredCharacterRepository extends JpaRepository<PreferredCharacter, Long> {
-    
-    @Modifying
-    @Transactional
-    @Query(value = "DELETE FROM preferred_characters WHERE userId=:userId AND characterId = :charId ", nativeQuery = true)
-    void foreignDelete(@PathVariable("char_id") Long charId, @PathVariable("user_id") Long userId);
-}
+public interface PreferredCharacterRepository extends PreferredRepository<PreferredCharacter> { }
