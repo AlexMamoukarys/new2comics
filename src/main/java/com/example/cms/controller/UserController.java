@@ -116,6 +116,11 @@ public class UserController {
         return repository.findAll();
     }
 
+    @GetMapping("/users/{id}")
+    User getUser(@PathVariable("id") Long userId) {
+        return repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
+    }
+    
     @PostMapping("/users")
     User createUser(@RequestBody User newUser) {
         return repository.save(newUser);
