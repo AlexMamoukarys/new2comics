@@ -165,32 +165,6 @@ public class UserController {
     }
 
     // PUT endpoints
-    @PutMapping("/users/{userId}/preferredpublishers/{publisherId}")
-    PreferredPublisher addPreferredPublisher(@PathVariable("userId") Long userId,
-                                             @PathVariable("publisherId") Long publisherId) {
-        User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
-        Publisher publisher = publisherRepository.findById(publisherId).orElseThrow(() -> new PublisherNotFoundException(publisherId));
-        PreferredPublisher preferredPublisher = new PreferredPublisher(user, publisher);
-        return preferredPublisherRepository.save(preferredPublisher);
-    }
-
-    @PutMapping("/users/{userId}/preferredcharacters/{characterId}")
-    PreferredCharacter addPreferredCharacter(@PathVariable("userId") Long userId,
-                                             @PathVariable("characterId") Long characterId) {
-        User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
-        Character character = characterRepository.findById(characterId).orElseThrow(() -> new CharacterNotFoundException(characterId));
-        PreferredCharacter preferredCharacter = new PreferredCharacter(user, character);
-        return preferredCharacterRepository.save(preferredCharacter);
-    }
-
-    @PutMapping("/users/{userId}/preferredgenres/{genreId}")
-    PreferredGenre addPreferredGenre(@PathVariable("userId") Long userId,
-                                     @PathVariable("genreId") Long genreId) {
-        User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
-        Genre genre = genreRepository.findById(genreId).orElseThrow(() -> new GenreNotFoundException(genreId));
-        PreferredGenre preferredGenre = new PreferredGenre(user, genre);
-        return preferredGenreRepository.save(preferredGenre);
-    }
 
     @PutMapping("/users/{userId}/likedvolumes/{volumeId}")
     LikedVolume addLikedVolume(@PathVariable("userId") Long userId,
@@ -208,60 +182,6 @@ public class UserController {
         Volume volume = volumeRepository.findById(volumeId).orElseThrow(() -> new VolumeNotFoundException(volumeId));
         SavedVolume savedVolume = new SavedVolume(user, volume);
         return savedVolumeRepository.save(savedVolume);
-    }
-
-    @PutMapping("/users/{userId}/preferredpowers/{powerId}")
-    PreferredPower addPreferredPower(@PathVariable("userId") Long userId,
-                                     @PathVariable("powerId") Long powerId) {
-        User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
-        Power power = powerRepository.findById(powerId).orElseThrow(() -> new PowerNotFoundException(powerId));
-        PreferredPower preferredPower = new PreferredPower(user, power);
-        return preferredPowerRepository.save(preferredPower);
-    }
-
-    @PutMapping("/users/{userId}/preferredteams/{teamId}")
-    PreferredTeam addPreferredTeam(@PathVariable("userId") Long userId,
-                                   @PathVariable("teamId") Long teamId) {
-        User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
-        Team team = teamRepository.findById(teamId).orElseThrow(() -> new TeamNotFoundException(teamId));
-        PreferredTeam preferredTeam = new PreferredTeam(user, team);
-        return preferredTeamRepository.save(preferredTeam);
-    }
-
-    @PutMapping("/users/{userId}/preferredpublishers/remove/{publisherId}")
-    PreferredPublisher removePreferredPublisher(@PathVariable("userId") Long userId,
-                                                @PathVariable("publisherId") Long publisherId) {
-        User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
-        PreferredPublisher preferredPublisher = user.getPreferredPublishers().stream()
-                .filter(item -> item.getPublisher().getId() == publisherId)
-                .findFirst()
-                .orElseThrow(() -> new PublisherNotFoundException(publisherId));
-        preferredPublisherRepository.delete(preferredPublisher);
-        return preferredPublisher;
-    }
-
-    @PutMapping("/users/{userId}/preferredcharacters/remove/{characterId}")
-    PreferredCharacter removePreferredCharacter(@PathVariable("userId") Long userId,
-                                                @PathVariable("characterId") Long characterId) {
-        User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
-        PreferredCharacter preferredCharacter = user.getPreferredCharacters().stream()
-                .filter(item -> item.getCharacter().getId() == characterId)
-                .findFirst()
-                .orElseThrow(() -> new CharacterNotFoundException(characterId));
-        preferredCharacterRepository.delete(preferredCharacter);
-        return preferredCharacter;
-    }
-
-    @PutMapping("/users/{userId}/preferredgenres/remove/{genreId}")
-    PreferredGenre removePreferredGenre(@PathVariable("userId") Long userId,
-                                        @PathVariable("genreId") Long genreId) {
-        User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
-        PreferredGenre preferredGenre = user.getPreferredGenres().stream()
-                .filter(item -> item.getGenre().getId() == genreId)
-                .findFirst()
-                .orElseThrow(() -> new GenreNotFoundException(genreId));
-        preferredGenreRepository.delete(preferredGenre);
-        return preferredGenre;
     }
 
     @PutMapping("/users/{userId}/likedvolumes/remove/{volumeId}")
@@ -286,30 +206,6 @@ public class UserController {
                 .orElseThrow(() -> new VolumeNotFoundException(volumeId));
         savedVolumeRepository.delete(savedVolume);
         return savedVolume;
-    }
-
-    @PutMapping("/users/{userId}/preferredpowers/remove/{powerId}")
-    PreferredPower removePreferredPower(@PathVariable("userId") Long userId,
-                                        @PathVariable("powerId") Long powerId) {
-        User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
-        PreferredPower preferredPower = user.getPreferredPowers().stream()
-                .filter(item -> item.getPower().getId() == powerId)
-                .findFirst()
-                .orElseThrow(() -> new PowerNotFoundException(powerId));
-        preferredPowerRepository.delete(preferredPower);
-        return preferredPower;
-    }
-
-    @PutMapping("/users/{userId}/preferredteams/remove/{teamId}")
-    PreferredTeam removePreferredTeam(@PathVariable("userId") Long userId,
-                                      @PathVariable("teamId") Long teamId) {
-        User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
-        PreferredTeam preferredTeam = user.getPreferredTeams().stream()
-                .filter(item -> item.getTeam().getId() == teamId)
-                .findFirst()
-                .orElseThrow(() -> new TeamNotFoundException(teamId));
-        preferredTeamRepository.delete(preferredTeam);
-        return preferredTeam;
     }
 
     @DeleteMapping("/users/{userId}")                          // Delete
