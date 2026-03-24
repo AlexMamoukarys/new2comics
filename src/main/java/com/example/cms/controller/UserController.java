@@ -164,6 +164,37 @@ public class UserController {
         return user.getPreferredTeams();
     }
 
+    // POST endpoints
+    @PostMapping("/users/register")
+    public ResponseEntity<?> registerUser(@RequestBody Map<String, String> userData){
+        String username = userData.get("username");
+        String rawPassword = userData.get("password");
+
+        if(repository.findByUsername(username).isPresent()){
+            System.err.println("Error: Username '" + username + "' is already taken.");
+            return ResponseEntity.badRequest().body(Map.of("error", "Username already taken"));
+        }
+
+        User newUser = new User(username, rawPassword);
+        repository.save(newUser);
+
+        return ResponseEntity.ok(Map.of("message", "User registered successfully"));
+    }
+
+    @PostMapping("/users/login")
+    public ResponseEntity<?> loginUser(@RequestBody Map<String, String> credentials){
+        String username = credentials.get("username");
+        String password = credentials.get("password");
+
+        User user = repository.findByUsername(username).orElseThrow(() -> new RuntimeException("User not found"));
+        if(!password.equals(user.getPassword())){
+            return ResponseEntity.status(401).body(Map.of("status"), "error", "message", "Invalid username or password");   
+        }
+
+        String sessionToken = UUID.randomUUID().toString();
+        return ResponseEntity.ok(Map.of("username"), username, "status", "success", "token", sessionToken, "isAdmin", user.getIsAdmin());
+    }
+
     // PUT endpoints
 
     @PutMapping("/users/{userId}/likedvolumes/{volumeId}")
