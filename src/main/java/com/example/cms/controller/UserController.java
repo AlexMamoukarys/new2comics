@@ -1,8 +1,10 @@
 package com.example.cms.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -164,6 +166,21 @@ public class UserController {
         return user.getPreferredTeams();
     }
 
+    // POST endpoints
+    @PostMapping("/users/login")
+    public ResponseEntity<?> loginUser(@RequestBody Map<String, String> credentials){
+        String username = credentials.get("username");
+        String password = credentials.get("password");
+
+        User user = repository.findByUsername(username).orElseThrow(() -> new RuntimeException("User not found"));
+        if(!password.equals(user.getPassword())){
+            return ResponseEntity.status(401).body(Map.of("status"), "error", "message", "Invalid username or password");   
+        }
+
+        String sessionToken = UUID.randomUUID().toString();
+        return ResponseEntity.ok(Map.of("username"), username, "status", "success", "token", sessionToken, "isAdmin", user.getIsAdmin());
+    }
+
     // PUT endpoints
 
     @PutMapping("/users/{userId}/likedvolumes/{volumeId}")
@@ -208,11 +225,8 @@ public class UserController {
         return savedVolume;
     }
 
-    @DeleteMapping("/users/{userId}")                          // Delete
+    @DeleteMapping("/users/{userId}")                          
     void deleteUser(@PathVariable("userId") Long userId) {
         repository.deleteById(userId);
     }
-
-
-
 }
