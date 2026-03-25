@@ -29,98 +29,103 @@
 -- INSERT INTO classrooms(code, capacity) VALUES('MB123', 30);
 -- INSERT INTO classrooms(code, capacity) VALUES('BA1130', 60);
 
-INSERT INTO issues(id, name, deck) VALUES(1, 'Blah blah blah', 'nfiohnoj]ld');
-INSERT INTO issues(id, name, deck) VALUES(2, 'Blah blah blah', 'nfiohnoj]ld');
+-- INSERT INTO issues(id, name, deck) VALUES(1, 'Blah blah blah', 'nfiohnoj]ld');
+-- INSERT INTO issues(id, name, deck) VALUES(2, 'Blah blah blah', 'nfiohnoj]ld');
 
-INSERT INTO genres(id, name) VALUES(0, 'Women in Refridgerators');
+-- INSERT INTO genres(id, name) VALUES(0, 'Women in Refridgerators');
 
-INSERT INTO genres(id, name) VALUES(1, 'Action');
-INSERT INTO genres(id, name) VALUES(2, 'Fantasy');
-INSERT INTO genres(id, name) VALUES(3, 'Space');
-INSERT INTO genres(id, name) VALUES(4, 'Sci-Fi');
-INSERT INTO genres(id, name) VALUES(5, 'Romance');
+-- INSERT INTO genres(id, name) VALUES(1, 'Action');
+-- INSERT INTO genres(id, name) VALUES(2, 'Fantasy');
+-- INSERT INTO genres(id, name) VALUES(3, 'Space');
+-- INSERT INTO genres(id, name) VALUES(4, 'Sci-Fi');
+-- INSERT INTO genres(id, name) VALUES(5, 'Romance');
 
-INSERT INTO characters(id, name, deck, gender, origin) VALUES(1, 'Archie', ' ', 'Male', 'Ohio');
-INSERT INTO characters(id, name, deck, gender, origin) VALUES(2, 'Batman', ' ', 'Male', 'Ohio');
-INSERT INTO characters(id, name, deck, gender, origin) VALUES(3, 'Spiderman', ' ', 'Male', 'Ohio');
-INSERT INTO characters(id, name, deck, gender, origin) VALUES(4, 'Superman', ' ', 'Male', 'Ohio');
-INSERT INTO characters(id, name, deck, gender, origin) VALUES(5, 'Flash', ' ', 'Male', 'Ohio');
+-- INSERT INTO characters(id, name, deck, gender, origin) VALUES(1, 'Archie', ' ', 'Male', 'Ohio');
+-- INSERT INTO characters(id, name, deck, gender, origin) VALUES(2, 'Batman', ' ', 'Male', 'Ohio');
+-- INSERT INTO characters(id, name, deck, gender, origin) VALUES(3, 'Spiderman', ' ', 'Male', 'Ohio');
+-- INSERT INTO characters(id, name, deck, gender, origin) VALUES(4, 'Superman', ' ', 'Male', 'Ohio');
+-- INSERT INTO characters(id, name, deck, gender, origin) VALUES(5, 'Flash', ' ', 'Male', 'Ohio');
 
-INSERT INTO publishers(id, name, deck, description, image) VALUES(1, 'Marvel', 'b', 'c', 'd');
-INSERT INTO publishers(id, name, deck, description, image) VALUES(2, 'DC', 'b', 'c', 'd');
-INSERT INTO publishers(id, name, deck, description, image) VALUES(3, 'Archie', 'b', 'c', 'd');
+-- INSERT INTO publishers(id, name, deck, description, image) VALUES(1, 'Marvel', 'b', 'c', 'd');
+-- INSERT INTO publishers(id, name, deck, description, image) VALUES(2, 'DC', 'b', 'c', 'd');
+-- INSERT INTO publishers(id, name, deck, description, image) VALUES(3, 'Archie', 'b', 'c', 'd');
 
-INSERT INTO powers(id, name, deck) VALUES(1, 'Speed', ' ');
-INSERT INTO powers(id, name, deck) VALUES(2, 'Flight', ' ');
-INSERT INTO powers(id, name, deck) VALUES(3, 'Web', ' ');
+-- INSERT INTO powers(id, name, deck) VALUES(1, 'Speed', ' ');
+-- INSERT INTO powers(id, name, deck) VALUES(2, 'Flight', ' ');
+-- INSERT INTO powers(id, name, deck) VALUES(3, 'Web', ' ');
 
-INSERT INTO teams(id, name, deck, publisherId) VALUES(1, 'Avengers', 'b', 1);
-INSERT INTO teams(id, name, deck, publisherId) VALUES(2, 'Justice League', 'b', 2);
-INSERT INTO teams(id, name, deck, publisherId) VALUES(3, 'Fantastic Four', 'b', 1);
+-- INSERT INTO teams(id, name, deck, publisherId) VALUES(1, 'Avengers', 'b', 1);
+-- INSERT INTO teams(id, name, deck, publisherId) VALUES(2, 'Justice League', 'b', 2);
+-- INSERT INTO teams(id, name, deck, publisherId) VALUES(3, 'Fantastic Four', 'b', 1);
 
-INSERT INTO volumes(id, name, numIssues, numLikes, deck, startYear, image, publisherId) VALUES(1, 'Batman #1', 2, 4, 'Blah blah blah', 2000, 'batman.png', 1);
-INSERT INTO volumes(id, name, numIssues, numLikes, deck, startYear, image, publisherId) VALUES(2, 'Spiderman #1', 2, 2, 'Blah blah blah', 2000, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRby1SM-CGg_hYiSMAtS2NvMm2nV8xrKBjm_w&s',2);
-INSERT INTO volumes(id, name, numIssues, numLikes, deck, startYear, image, publisherId) VALUES(3, 'Spiderman #2', 2, 3, 'Blah blah blah', 2000, 'batman.png', 2);
-INSERT INTO volumes(id, name, numIssues, numLikes, deck, startYear, image, publisherId) VALUES(4, 'Spiderman #3', 2, 6, 'Blah blah blah', 2000, 'batman.png', 3);
-INSERT INTO volumes(id, name, numIssues, numLikes, deck, startYear, image, publisherId) VALUES(5, 'Spiderman #4', 2, 1, 'Blah blah blah', 2000, 'batman.png', 3);
+-- INSERT INTO volumes(id, name, numIssues, numLikes, deck, startYear, image, publisherId) VALUES(1, 'Batman #1', 2, 4, 'Blah blah blah', 2000, 'batman.png', 1);
+-- INSERT INTO volumes(id, name, numIssues, numLikes, deck, startYear, image, publisherId) VALUES(2, 'Spiderman #1', 2, 2, 'Blah blah blah', 2000, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRby1SM-CGg_hYiSMAtS2NvMm2nV8xrKBjm_w&s',2);
+-- INSERT INTO volumes(id, name, numIssues, numLikes, deck, startYear, image, publisherId) VALUES(3, 'Spiderman #2', 2, 3, 'Blah blah blah', 2000, 'batman.png', 2);
+-- INSERT INTO volumes(id, name, numIssues, numLikes, deck, startYear, image, publisherId) VALUES(4, 'Spiderman #3', 2, 6, 'Blah blah blah', 2000, 'batman.png', 3);
+-- INSERT INTO volumes(id, name, numIssues, numLikes, deck, startYear, image, publisherId) VALUES(5, 'Spiderman #4', 2, 1, 'Blah blah blah', 2000, 'batman.png', 3);
 
-INSERT INTO users(id) VALUES(0);
+-- INSERT INTO users(id) VALUES(0);
 
-INSERT INTO preferred_publishers(id, userId, publisherId) VALUES(101, 0, 3);
--- INSERT INTO preferred_publishers(id, userId, publisherId) VALUES(2, 0, 3);
+-- INSERT INTO preferred_publishers(id, userId, publisherId) VALUES(101, 0, 3);
+-- -- INSERT INTO preferred_publishers(id, userId, publisherId) VALUES(2, 0, 3);
 
--- =====================================================
--- Relationship examples covering every entity/table
--- =====================================================
+-- -- =====================================================
+-- -- Relationship examples covering every entity/table
+-- -- =====================================================
 
--- Standalone entity example
-INSERT INTO issues(id, name, deck) VALUES(100, 'Starter Issue', 'Example issue row for the Issue entity.');
+-- -- Standalone entity example
+-- INSERT INTO issues(id, name, deck) VALUES(100, 'Starter Issue', 'Example issue row for the Issue entity.');
 
--- Base entities used by the relationship examples
-INSERT INTO publishers(id, name, deck, description, image) VALUES(100, 'Image Comics', 'Independent publisher', 'Publishes creator-owned comics.', 'image-comics.png');
-INSERT INTO publishers(id, name, deck, description, image) VALUES(101, 'Dark Horse', 'Genre publisher', 'Publishes fantasy and sci-fi comics.', 'dark-horse.png');
+-- -- Base entities used by the relationship examples
+-- -- INSERT INTO publishers(id, name, deck, description, image) VALUES(100, 'Image Comics', 'Independent publisher', 'Publishes creator-owned comics.', 'image-comics.png');
+-- -- INSERT INTO publishers(id, name, deck, description, image) VALUES(101, 'Dark Horse', 'Genre publisher', 'Publishes fantasy and sci-fi comics.', 'dark-horse.png');
 
-INSERT INTO genres(id, name) VALUES(100, 'Mystery');
-INSERT INTO genres(id, name) VALUES(101, 'Adventure');
+-- INSERT INTO genres(id, name) VALUES(100, 'Mystery');
+-- INSERT INTO genres(id, name) VALUES(101, 'Adventure');
 
-INSERT INTO powers(id, name, deck) VALUES(100, 'Shadow Step', 'Short-range teleportation through shadows.');
-INSERT INTO powers(id, name, deck) VALUES(101, 'Arc Light', 'Projects concentrated beams of light.');
+-- INSERT INTO powers(id, name, deck) VALUES(100, 'Shadow Step', 'Short-range teleportation through shadows.');
+-- INSERT INTO powers(id, name, deck) VALUES(101, 'Arc Light', 'Projects concentrated beams of light.');
 
-INSERT INTO characters(id, name, deck, gender, origin) VALUES(100, 'Nova Reed', 'An investigator who protects the city at night.', 'Female', 'Toronto');
-INSERT INTO characters(id, name, deck, gender, origin) VALUES(101, 'Atlas Pike', 'A cosmic explorer with a talent for surviving the impossible.', 'Male', 'Mars Colony');
+-- INSERT INTO characters(id, name, deck, gender, origin) VALUES(100, 'Nova Reed', 'An investigator who protects the city at night.', 'Female', 'Toronto');
+-- INSERT INTO characters(id, name, deck, gender, origin) VALUES(101, 'Atlas Pike', 'A cosmic explorer with a talent for surviving the impossible.', 'Male', 'Mars Colony');
 
-INSERT INTO teams(id, name, deck, publisherId) VALUES(100, 'Night Watch', 'Street-level heroes solving supernatural crimes.', 100);
-INSERT INTO teams(id, name, deck, publisherId) VALUES(101, 'Starbound', 'A deep-space rescue and exploration crew.', 101);
+-- INSERT INTO teams(id, name, deck, publisherId) VALUES(100, 'Night Watch', 'Street-level heroes solving supernatural crimes.', 100);
+-- INSERT INTO teams(id, name, deck, publisherId) VALUES(101, 'Starbound', 'A deep-space rescue and exploration crew.', 101);
 
-INSERT INTO volumes(id, name, numIssues, numLikes, deck, startYear, image, publisherId) VALUES(100, 'Midnight Signal', 12, 0, 'A noir mystery series set in a haunted city.', 2024, 'midnight-signal.png', 100);
-INSERT INTO volumes(id, name, numIssues, numLikes, deck, startYear, image, publisherId) VALUES(101, 'Starbound Frontier', 8, 0, 'A science-fiction adventure beyond the solar system.', 2025, 'starbound-frontier.png', 101);
+-- INSERT INTO volumes(id, name, numIssues, numLikes, deck, startYear, image, publisherId) VALUES(100, 'Midnight Signal', 12, 0, 'A noir mystery series set in a haunted city.', 2024, 'midnight-signal.png', 100);
+-- INSERT INTO volumes(id, name, numIssues, numLikes, deck, startYear, image, publisherId) VALUES(101, 'Starbound Frontier', 8, 0, 'A science-fiction adventure beyond the solar system.', 2025, 'starbound-frontier.png', 101);
 
-INSERT INTO users(id) VALUES(101);
+-- INSERT INTO users(id) VALUES(101);
 
--- Many-to-many examples through explicit join entities
--- Volume <-> Character
-INSERT INTO volumeCharacters(volumeId, characterId) VALUES(100, 100);
-INSERT INTO volumeCharacters(volumeId, characterId) VALUES(101, 100);
-INSERT INTO volumeCharacters(volumeId, characterId) VALUES(101, 101);
+-- -- Many-to-many examples through explicit join entities
+-- -- Volume <-> Character
+-- INSERT INTO volumeCharacters(volumeId, characterId) VALUES(100, 100);
+-- INSERT INTO volumeCharacters(volumeId, characterId) VALUES(101, 100);
+-- INSERT INTO volumeCharacters(volumeId, characterId) VALUES(101, 101);
 
--- Volume <-> Genre
-INSERT INTO volumeGenres(volumeId, genreId) VALUES(100, 100);
-INSERT INTO volumeGenres(volumeId, genreId) VALUES(100, 101);
-INSERT INTO volumeGenres(volumeId, genreId) VALUES(101, 101);
+-- -- Volume <-> Genre
+-- INSERT INTO volumeGenres(volumeId, genreId) VALUES(100, 100);
+-- INSERT INTO volumeGenres(volumeId, genreId) VALUES(100, 101);
+-- INSERT INTO volumeGenres(volumeId, genreId) VALUES(101, 101);
 
--- Volume <-> Team
-INSERT INTO volumeTeams(volumeId, teamId) VALUES(100, 100);
-INSERT INTO volumeTeams(volumeId, teamId) VALUES(101, 100);
-INSERT INTO volumeTeams(volumeId, teamId) VALUES(101, 101);
+-- -- Volume <-> Team
+-- INSERT INTO volumeTeams(volumeId, teamId) VALUES(100, 100);
+-- INSERT INTO volumeTeams(volumeId, teamId) VALUES(101, 100);
+-- INSERT INTO volumeTeams(volumeId, teamId) VALUES(101, 101);
 
--- User preference/link entities
-INSERT INTO preferred_characters(id, userId, characterId) VALUES(100, 0, 100);
-INSERT INTO preferred_genres(id, userId, genreId) VALUES(100, 0, 101);
-INSERT INTO preferred_powers(id, userId, powerId) VALUES(100, 0, 100);
-INSERT INTO preferred_publishers(id, userId, publisherId) VALUES(100, 0, 100);
-INSERT INTO preferred_teams(id, userId, teamId) VALUES(100, 0, 100);
+-- -- User preference/link entities
+-- INSERT INTO preferred_characters(id, userId, characterId) VALUES(100, 0, 100);
+-- INSERT INTO preferred_genres(id, userId, genreId) VALUES(100, 0, 101);
+-- INSERT INTO preferred_powers(id, userId, powerId) VALUES(100, 0, 100);
+-- INSERT INTO preferred_publishers(id, userId, publisherId) VALUES(100, 0, 100);
+-- INSERT INTO preferred_teams(id, userId, teamId) VALUES(100, 0, 100);
 
--- User <-> Volume examples modeled as entities
-INSERT INTO liked_volume(id, userId, volumeId) VALUES(100, 0, 100);
-INSERT INTO liked_volume(id, userId, volumeId) VALUES(101, 0, 101);
-INSERT INTO saved_volume(id, userId, volumeId) VALUES(100, 101, 100);
+-- -- User <-> Volume examples modeled as entities
+-- INSERT INTO liked_volume(id, userId, volumeId) VALUES(100, 0, 100);
+-- INSERT INTO liked_volume(id, userId, volumeId) VALUES(101, 0, 101);
+-- INSERT INTO saved_volume(id, userId, volumeId) VALUES(100, 101, 100);
+
+
+-- Volume.sql test (creditless)
+-- INSERT INTO publishers (id, name) VALUES (5, 'United Feature Syndicate');
+-- INSERT INTO volumes (id, name, publisherId, deck, startYear, numIssues, image) VALUES ('766', 'Single Series', '5', '<p>Running for twenty-eight issues from 1938-1942, Single Series was a series of color newspaper reprints featuring various comic strips. Although most of the issues focused on a different character, several issues featured the same character:</p><ul><li><a href="/abbie/4005-9275/" data-ref-id="4005-9275">Abbie</a> an'' <a href="/slats/4005-9276/" data-ref-id="4005-9276">Slats</a>: 25, 28*</li><li><a href="/broncho-bill/4005-34368/" data-ref-id="4005-34368">Broncho Bill</a>: 2, 19</li><li><a href="/ella-cinders/4005-9274/" data-ref-id="4005-9274">Ella Cinders</a>: 3, 21, 28*</li><li><a href="/jim-hardy/4005-7859/" data-ref-id="4005-7859">Jim Hardy</a>: 6, 27</li><li><a href="/lil-abner/4005-9279/" data-ref-id="4005-9279">Li''l Abner</a>: 4, 18 </li><li><a href="/little-mary-mixup/4005-33171/" data-ref-id="4005-33171">Little Mary Mixup</a>: 10, 26</li></ul><p>*Ella Cinders and Abbie an'' Slats were both in the same issue, the only issue to combine two character groups, as well as the final issue.</p>', '1938', '28', 'https://comicvine.gamespot.com/a/uploads/screen_medium/0/9116/880845-1.jpg');
