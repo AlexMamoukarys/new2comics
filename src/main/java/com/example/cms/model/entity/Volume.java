@@ -37,7 +37,8 @@ public class Volume {
     private int numIssues;
     
     // commented out to test volume.sql (need to add num likes to sql or change this to nullable)
-    // private int numLikes;
+    @Nullable
+    private int numLikes;
 
     @Nullable
     // changed column type for deck to allow long length
