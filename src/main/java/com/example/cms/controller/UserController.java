@@ -1,11 +1,11 @@
 package com.example.cms.controller;
 
 import java.util.List;
-import java.util.Map; // this one
-import java.util.UUID; // this one
+import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity; // This one
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -124,128 +124,128 @@ public class UserController {
         return repository.save(newUser);
     }
 
-    // // GET endpoints
-    // @GetMapping("/users/{id}/likedvolumes")
-    // List<LikedVolume> getLikedVolumes(@PathVariable("id") Long userId) {
-    //     User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
-    //     return user.getLikedVolumes();
-    // }
+    // GET endpoints
+    @GetMapping("/users/{id}/likedvolumes")
+    List<LikedVolume> getLikedVolumes(@PathVariable("id") Long userId) {
+        User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
+        return user.getLikedVolumes();
+    }
 
-    // @GetMapping("/users/{id}/savedvolumes")
-    // List<SavedVolume> getSavedVolumes(@PathVariable("id") Long userId) {
-    //     User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
-    //     return user.getSavedVolumes();
-    // }
+    @GetMapping("/users/{id}/savedvolumes")
+    List<SavedVolume> getSavedVolumes(@PathVariable("id") Long userId) {
+        User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
+        return user.getSavedVolumes();
+    }
 
-    // @GetMapping("/users/{id}/preferredpublishers")
-    // List<PreferredPublisher> getPreferredPublishers(@PathVariable("id") Long userId) {
-    //     User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
-    //     return user.getPreferredPublishers();
-    // }
+    @GetMapping("/users/{id}/preferredpublishers")
+    List<PreferredPublisher> getPreferredPublishers(@PathVariable("id") Long userId) {
+        User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
+        return user.getPreferredPublishers();
+    }
 
-    // @GetMapping("/users/{id}/preferredcharacters")
-    // List<PreferredCharacter> getPreferredCharacters(@PathVariable("id") Long userId) {
-    //     User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
-    //     return user.getPreferredCharacters();
-    // }
+    @GetMapping("/users/{id}/preferredcharacters")
+    List<PreferredCharacter> getPreferredCharacters(@PathVariable("id") Long userId) {
+        User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
+        return user.getPreferredCharacters();
+    }
 
-    // @GetMapping("/users/{id}/preferredgenres")
-    // List<PreferredGenre> getPreferredGenres(@PathVariable("id") Long userId) {
-    //     User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
-    //     return user.getPreferredGenres();
-    // }
+    @GetMapping("/users/{id}/preferredgenres")
+    List<PreferredGenre> getPreferredGenres(@PathVariable("id") Long userId) {
+        User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
+        return user.getPreferredGenres();
+    }
 
-    // @GetMapping("/users/{id}/preferredpowers")
-    // List<PreferredPower> getPreferredPowers(@PathVariable("id") Long userId) {
-    //     User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
-    //     return user.getPreferredPowers();
-    // }
+    @GetMapping("/users/{id}/preferredpowers")
+    List<PreferredPower> getPreferredPowers(@PathVariable("id") Long userId) {
+        User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
+        return user.getPreferredPowers();
+    }
 
-    // @GetMapping("/users/{id}/preferredteams")
-    // List<PreferredTeam> getPreferredTeams(@PathVariable("id") Long userId) {
-    //     User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
-    //     return user.getPreferredTeams();
-    // }
+    @GetMapping("/users/{id}/preferredteams")
+    List<PreferredTeam> getPreferredTeams(@PathVariable("id") Long userId) {
+        User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
+        return user.getPreferredTeams();
+    }
 
-    // // POST endpoints
-    // @PostMapping("/users/register")
-    // public ResponseEntity<?> registerUser(@RequestBody Map<String, String> userData){
-    //     String username = userData.get("username");
-    //     String rawPassword = userData.get("password");
+    // POST endpoints
+    @PostMapping("/users/register")
+    public ResponseEntity<?> registerUser(@RequestBody Map<String, String> userData){
+        String username = userData.get("username");
+        String rawPassword = userData.get("password");
 
-    //     if(repository.findByUsername(username).isPresent()){
-    //         System.err.println("Error: Username '" + username + "' is already taken.");
-    //         return ResponseEntity.badRequest().body(Map.of("error", "Username already taken"));
-    //     }
+        if(repository.findByUsername(username).isPresent()){
+            System.err.println("Error: Username '" + username + "' is already taken.");
+            return ResponseEntity.badRequest().body(Map.of("error", "Username already taken"));
+        }
 
-    //     User newUser = new User(username, rawPassword);
-    //     repository.save(newUser);
+        User newUser = new User(username, rawPassword);
+        repository.save(newUser);
 
-    //     return ResponseEntity.ok(Map.of("message", "User registered successfully"));
-    // }
+        return ResponseEntity.ok(Map.of("message", "User registered successfully"));
+    }
 
-    // @PostMapping("/users/login")
-    // public ResponseEntity<?> loginUser(@RequestBody Map<String, String> credentials){
-    //     String username = credentials.get("username");
-    //     String password = credentials.get("password");
+    @PostMapping("/auth/login")
+    public ResponseEntity<?> loginUser(@RequestBody Map<String, String> credentials){
+        String username = credentials.get("username");
+        String password = credentials.get("password");
 
-    //     User user = repository.findByUsername(username).orElseThrow(() -> new RuntimeException("User not found"));
-    //     if(!password.equals(user.getPassword())){
-    //         return ResponseEntity.status(401).body(Map.of("status"), "error", "message", "Invalid username or password");   
-    //     }
+        User user = repository.findByUsername(username).orElseThrow(() -> new RuntimeException("User not found"));
+        if(!password.equals(user.getPassword())){
+            return ResponseEntity.status(401).body(Map.of("status", "error", "message", "Invalid username or password"));   
+        }
 
-    //     String sessionToken = UUID.randomUUID().toString();
-    //     return ResponseEntity.ok(Map.of("username"), username, "status", "success", "token", sessionToken, "isAdmin", user.getIsAdmin());
-    // }
+        String sessionToken = UUID.randomUUID().toString();
+        return ResponseEntity.ok(Map.of("userId", user.getId(),"username", username, "status", "success", "token", sessionToken, "isAdmin", user.getIsAdmin()));
+    }
 
-    // // PUT endpoints
+    // PUT endpoints
 
-    // @PutMapping("/users/{userId}/likedvolumes/{volumeId}")
-    // LikedVolume addLikedVolume(@PathVariable("userId") Long userId,
-    //                            @PathVariable("volumeId") Long volumeId) {
-    //     User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
-    //     Volume volume = volumeRepository.findById(volumeId).orElseThrow(() -> new VolumeNotFoundException(volumeId));
-    //     LikedVolume likedVolume = new LikedVolume(user, volume);
-    //     return likedVolumeRepository.save(likedVolume);
-    // }
+    @PutMapping("/users/{userId}/likedvolumes/{volumeId}")
+    LikedVolume addLikedVolume(@PathVariable("userId") Long userId,
+                               @PathVariable("volumeId") Long volumeId) {
+        User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
+        Volume volume = volumeRepository.findById(volumeId).orElseThrow(() -> new VolumeNotFoundException(volumeId));
+        LikedVolume likedVolume = new LikedVolume(user, volume);
+        return likedVolumeRepository.save(likedVolume);
+    }
 
-    // @PutMapping("/users/{userId}/savedvolumes/{volumeId}")
-    // SavedVolume addSavedVolume(@PathVariable("userId") Long userId,
-    //                            @PathVariable("volumeId") Long volumeId) {
-    //     User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
-    //     Volume volume = volumeRepository.findById(volumeId).orElseThrow(() -> new VolumeNotFoundException(volumeId));
-    //     SavedVolume savedVolume = new SavedVolume(user, volume);
-    //     return savedVolumeRepository.save(savedVolume);
-    // }
+    @PutMapping("/users/{userId}/savedvolumes/{volumeId}")
+    SavedVolume addSavedVolume(@PathVariable("userId") Long userId,
+                               @PathVariable("volumeId") Long volumeId) {
+        User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
+        Volume volume = volumeRepository.findById(volumeId).orElseThrow(() -> new VolumeNotFoundException(volumeId));
+        SavedVolume savedVolume = new SavedVolume(user, volume);
+        return savedVolumeRepository.save(savedVolume);
+    }
 
-    // @PutMapping("/users/{userId}/likedvolumes/remove/{volumeId}")
-    // LikedVolume removeLikedVolume(@PathVariable("userId") Long userId,
-    //                               @PathVariable("volumeId") Long volumeId) {
-    //     User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
-    //     LikedVolume likedVolume = user.getLikedVolumes().stream()
-    //             .filter(item -> item.getVolume().getId() == volumeId)
-    //             .findFirst()
-    //             .orElseThrow(() -> new VolumeNotFoundException(volumeId));
-    //     likedVolumeRepository.delete(likedVolume);
-    //     return likedVolume;
-    // }
+    @PutMapping("/users/{userId}/likedvolumes/remove/{volumeId}")
+    LikedVolume removeLikedVolume(@PathVariable("userId") Long userId,
+                                  @PathVariable("volumeId") Long volumeId) {
+        User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
+        LikedVolume likedVolume = user.getLikedVolumes().stream()
+                .filter(item -> item.getVolume().getId() == volumeId)
+                .findFirst()
+                .orElseThrow(() -> new VolumeNotFoundException(volumeId));
+        likedVolumeRepository.delete(likedVolume);
+        return likedVolume;
+    }
 
-    // @PutMapping("/users/{userId}/savedvolumes/remove/{volumeId}")
-    // SavedVolume removeSavedVolume(@PathVariable("userId") Long userId,
-    //                               @PathVariable("volumeId") Long volumeId) {
-    //     User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
-    //     SavedVolume savedVolume = user.getSavedVolumes().stream()
-    //             .filter(item -> item.getVolume().getId() == volumeId)
-    //             .findFirst()
-    //             .orElseThrow(() -> new VolumeNotFoundException(volumeId));
-    //     savedVolumeRepository.delete(savedVolume);
-    //     return savedVolume;
-    // }
+    @PutMapping("/users/{userId}/savedvolumes/remove/{volumeId}")
+    SavedVolume removeSavedVolume(@PathVariable("userId") Long userId,
+                                  @PathVariable("volumeId") Long volumeId) {
+        User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
+        SavedVolume savedVolume = user.getSavedVolumes().stream()
+                .filter(item -> item.getVolume().getId() == volumeId)
+                .findFirst()
+                .orElseThrow(() -> new VolumeNotFoundException(volumeId));
+        savedVolumeRepository.delete(savedVolume);
+        return savedVolume;
+    }
 
-    // @DeleteMapping("/users/{userId}")                          // Delete
-    // void deleteUser(@PathVariable("userId") Long userId) {
-    //     repository.deleteById(userId);
-    // }
+    @DeleteMapping("/users/{userId}")                          // Delete
+    void deleteUser(@PathVariable("userId") Long userId) {
+        repository.deleteById(userId);
+    }
 
 
 
