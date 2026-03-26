@@ -37,7 +37,7 @@ public class Volume {
     private int numIssues;
     
     // commented out to test volume.sql (need to add num likes to sql or change this to nullable)
-    // private int numLikes;
+     private int numLikes;
 
     @Nullable
     // changed column type for deck to allow long length
@@ -45,9 +45,10 @@ public class Volume {
     private String deck;
 
     // uncommneted firstIssue and renamed column to firstIssue
-   @OneToOne
-   @JoinColumn(name = "firstIssue")
-   private Issue firstIssue;
+    @OneToOne
+    @JoinColumn(name = "firstIssue")
+    private Issue firstIssue;
+
     @NotEmpty
     private int startYear;
 

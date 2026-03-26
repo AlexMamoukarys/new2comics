@@ -32,18 +32,18 @@ public class Team {
     @NotEmpty
     private String name;
 
-    @NotEmpty
-    private String deck;
+//    @NotEmpty
+//    private String deck;
 
     //@ManyToMany(mappedBy = "__")
     //@Nullable
     //private List<Volume> volumes = new ArrayList<>();
 
-    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, orphanRemoval = true)
-    @Nullable
-    private List<VolumeTeam> volumeTeams = new ArrayList<>();
+//    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, orphanRemoval = true)
+//    @Nullable
+//    private List<VolumeTeam> volumeTeams = new ArrayList<>();
 
-    @ManyToOne
-    @JoinColumn(name="publisherId")
-    private Publisher publisher;
+//    @ManyToOne
+//    @JoinColumn(name="publisherId")
+//    private Publisher publisher;
 }

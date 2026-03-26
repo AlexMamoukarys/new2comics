@@ -32,14 +32,14 @@ public class Publisher {
     @NotEmpty
     private String name;
 
-    @Nullable
-    private String deck;
+//    @Nullable
+//    private String deck;
 
-    @Nullable
-    private String description;
-
-    @NotEmpty
-    private String image;
+//    @Nullable
+//    private String description;
+//
+//    @NotEmpty
+//    private String image;
 
     //@ManyToMany(mappedBy = "teamId")
     //@Nullable
