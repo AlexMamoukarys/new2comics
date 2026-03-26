@@ -1,8 +1,11 @@
 package com.example.cms.controller;
 
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -181,18 +184,18 @@ public class UserController {
         return ResponseEntity.ok(Map.of("message", "User registered successfully"));
     }
 
-    @PostMapping("/users/login")
+    @PostMapping("/auth/login")
     public ResponseEntity<?> loginUser(@RequestBody Map<String, String> credentials){
         String username = credentials.get("username");
         String password = credentials.get("password");
 
         User user = repository.findByUsername(username).orElseThrow(() -> new RuntimeException("User not found"));
         if(!password.equals(user.getPassword())){
-            return ResponseEntity.status(401).body(Map.of("status"), "error", "message", "Invalid username or password");   
+            return ResponseEntity.status(401).body(Map.of("status", "error", "message", "Invalid username or password"));   
         }
 
         String sessionToken = UUID.randomUUID().toString();
-        return ResponseEntity.ok(Map.of("username"), username, "status", "success", "token", sessionToken, "isAdmin", user.getIsAdmin());
+        return ResponseEntity.ok(Map.of("userId", user.getId(),"username", username, "status", "success", "token", sessionToken, "isAdmin", user.getIsAdmin()));
     }
 
     // PUT endpoints

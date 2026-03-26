@@ -64,7 +64,7 @@ INSERT INTO volumes(id, name, numIssues, numLikes, deck, startYear, image, publi
 INSERT INTO volumes(id, name, numIssues, numLikes, deck, startYear, image, publisherId) VALUES(4, 'Spiderman #3', 2, 6, 'Blah blah blah', 2000, 'batman.png', 3);
 INSERT INTO volumes(id, name, numIssues, numLikes, deck, startYear, image, publisherId) VALUES(5, 'Spiderman #4', 2, 1, 'Blah blah blah', 2000, 'batman.png', 3);
 
-INSERT INTO users(id) VALUES(0);
+INSERT INTO users(id, username, password, isAdmin) VALUES(0, 'testuser', 'testpassword', false);
 
 INSERT INTO preferred_publishers(id, userId, publisherId) VALUES(101, 0, 3);
 -- INSERT INTO preferred_publishers(id, userId, publisherId) VALUES(2, 0, 3);
@@ -95,7 +95,7 @@ INSERT INTO teams(id, name, deck, publisherId) VALUES(101, 'Starbound', 'A deep-
 INSERT INTO volumes(id, name, numIssues, numLikes, deck, startYear, image, publisherId) VALUES(100, 'Midnight Signal', 12, 0, 'A noir mystery series set in a haunted city.', 2024, 'midnight-signal.png', 100);
 INSERT INTO volumes(id, name, numIssues, numLikes, deck, startYear, image, publisherId) VALUES(101, 'Starbound Frontier', 8, 0, 'A science-fiction adventure beyond the solar system.', 2025, 'starbound-frontier.png', 101);
 
-INSERT INTO users(id) VALUES(101);
+INSERT INTO users(id, username, password, isAdmin) VALUES(101, 'testuser2', 'testpassword2', false);
 
 -- Many-to-many examples through explicit join entities
 -- Volume <-> Character
