@@ -11,8 +11,8 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface CharacterRepository extends JpaRepository<Character, Long> {
-        @Query(value = "select * from characters s " +
+public interface CharacterRepository extends PropertyRepository<Character> {
+    @Query(value = "select * from characters s " +
         "where lower(s.name) like lower(concat('%', :searchTerm, '%')) "+
         "or lower(s.deck) like lower(concat('%', :searchTerm, '%'))", nativeQuery = true)
     List<Character> search(@Param("searchTerm") String searchTerm);

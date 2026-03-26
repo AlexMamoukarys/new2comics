@@ -6,7 +6,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,21 +16,30 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(name = "preferred_characters")
-public class PreferredCharacter {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+public class PreferredCharacter extends Preferred<Character> {
+
+    public static final String PATH = "/preferredcharacters";
+    public static final String TABLE = "preferred_characters";
+    public static final String NAME_ID = "characterId";
 
     @ManyToOne
-    @JoinColumn(name="userId")
-    private User user;
-
-    @ManyToOne
-    @JoinColumn(name="characterId")
+    @JoinColumn(name=NAME_ID)
     private Character character;
 
+
+
     public PreferredCharacter(User user, Character character) {
-        this.user = user;
+        setUser(user);
+        this.character = character;
+    }
+
+    @Override
+    public Character getPreference() {
+        return character;
+    }
+
+    @Override
+    public void setPreference(Character character) {
         this.character = character;
     }
 }

@@ -23,23 +23,15 @@ import com.example.cms.model.entity.Volume;
 @Getter
 @Setter
 @Table(name = "characters")
-public class Character {
-
-    @Id
-    @NotEmpty
-    private long id;
-
-    @NotEmpty
-    private String name;
-
-    @Nullable
-    private String deck;
+public class Character extends Property {
 
     @NotEmpty
     private String gender;
 
     @Nullable
     private String origin;
+
+    public static final String PATH = "/characters";
 
     //@ManyToMany(mappedBy = "powerId")
     //@Nullable
