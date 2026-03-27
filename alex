@@ -12,3 +12,10 @@ volumes_df = volumes_df.merge(chars_grouped, left_on="id", right_on="volume_id",
 volumes_df = volumes_df.merge(concepts_grouped, left_on="id", right_on="volume_id", how="left").drop(columns="volume_id")
 
 volumes_df.to_csv("volumes_enriched.csv", index=False)
+
+
+import ast
+
+volumes_df["first_issue"] = volumes_df["first_issue"].apply(
+    lambda x: ast.literal_eval(x).get("name") if pd.notna(x) and x != "None" else None
+)
