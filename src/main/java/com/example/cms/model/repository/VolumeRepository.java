@@ -28,7 +28,7 @@ public interface VolumeRepository extends JpaRepository<Volume, Long> {
         "    FROM volumes v " +
         "    JOIN publishers p ON p.id = v.publisherId " +
         "     WHERE LOWER(p.name) LIKE LOWER(CONCAT('%', :searchTerm, '%')) " +
-        "       OR LOWER(p.deck) LIKE LOWER(CONCAT('%', :searchTerm, '%')) " +
+//        "       OR LOWER(p.deck) LIKE LOWER(CONCAT('%', :searchTerm, '%')) " +
     
            "    UNION " +
     
@@ -36,7 +36,7 @@ public interface VolumeRepository extends JpaRepository<Volume, Long> {
         "     FROM volumeCharacters vc " +
         "     JOIN characters c ON c.id = vc.characterId " +
         "     WHERE LOWER(c.name) LIKE LOWER(CONCAT('%', :searchTerm, '%')) " +
-        "       OR LOWER(c.deck) LIKE LOWER(CONCAT('%', :searchTerm, '%')) " +
+//        "       OR LOWER(c.deck) LIKE LOWER(CONCAT('%', :searchTerm, '%')) " +
     
            "    UNION " +
     
@@ -52,7 +52,7 @@ public interface VolumeRepository extends JpaRepository<Volume, Long> {
         "    FROM volumeTeams vt " +
         "    JOIN teams t ON t.id = vt.teamId " +
         "    WHERE LOWER(t.name) LIKE LOWER(CONCAT('%', :searchTerm, '%')) " +
-        "       OR LOWER(t.deck) LIKE LOWER(CONCAT('%', :searchTerm, '%')) " +
+//        "       OR LOWER(t.deck) LIKE LOWER(CONCAT('%', :searchTerm, '%')) " +
            ") "+
     
     "SELECT v.*, " +
