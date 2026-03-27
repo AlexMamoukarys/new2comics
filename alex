@@ -1,0 +1,14 @@
+import pandas as pd
+
+volumes_df = pd.read_csv("volumes_checkpoint.csv")
+chars_df = pd.read_csv("volume_characters.csv")
+concepts_df = pd.read_csv("volume_concepts.csv")
+
+# Aggregate into lists grouped by volume
+chars_grouped = chars_df.groupby("volume_id")["name"].apply(list).reset_index(name="characters")
+concepts_grouped = concepts_df.groupby("volume_id")["name"].apply(list).reset_index(name="concepts")
+
+volumes_df = volumes_df.merge(chars_grouped, left_on="id", right_on="volume_id", how="left").drop(columns="volume_id")
+volumes_df = volumes_df.merge(concepts_grouped, left_on="id", right_on="volume_id", how="left").drop(columns="volume_id")
+
+volumes_df.to_csv("volumes_enriched.csv", index=False)
