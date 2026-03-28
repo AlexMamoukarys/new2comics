@@ -32,15 +32,6 @@ public class Character {
     @NotEmpty
     private String name;
 
-    @Nullable
-    private String deck;
-
-    @NotEmpty
-    private String gender;
-
-    @Nullable
-    private String origin;
-
     //@ManyToMany(mappedBy = "powerId")
     //@Nullable
     //private List<Power> powers = new ArrayList<>();

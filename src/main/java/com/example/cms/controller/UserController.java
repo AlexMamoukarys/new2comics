@@ -181,7 +181,7 @@ public class UserController {
         User newUser = new User(username, rawPassword);
         repository.save(newUser);
 
-        return ResponseEntity.ok(Map.of("message", "User registered successfully"));
+        return ResponseEntity.ok(Map.of("message", "User registered successfully", "userId", newUser.getId()));
     }
 
     @PostMapping("/auth/login")
