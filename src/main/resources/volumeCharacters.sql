@@ -1,4 +1,15 @@
 -- Volume Characters
+
+INSERT INTO volumeCharacters(volumeId, characterId) VALUES(773, 2030);
+INSERT INTO volumeCharacters(volumeId, characterId) VALUES(773, 2031);
+INSERT INTO volumeCharacters(volumeId, characterId) VALUES(773, 2032);
+INSERT INTO volumeCharacters(volumeId, characterId) VALUES(773, 2033);
+INSERT INTO volumeCharacters(volumeId, characterId) VALUES(773, 2034);
+INSERT INTO volumeCharacters(volumeId, characterId) VALUES(773, 2035);
+INSERT INTO volumeCharacters(volumeId, characterId) VALUES(773, 2036);
+INSERT INTO volumeCharacters(volumeId, characterId) VALUES(773, 2047);
+INSERT INTO volumeCharacters(volumeId, characterId) VALUES(773, 2048);
+INSERT INTO volumeCharacters(volumeId, characterId) VALUES(773, 2049);
 INSERT INTO volumeCharacters(volumeId, characterId) VALUES(773, 1807);
 INSERT INTO volumeCharacters(volumeId, characterId) VALUES(773, 1808);
 INSERT INTO volumeCharacters(volumeId, characterId) VALUES(773, 1809);

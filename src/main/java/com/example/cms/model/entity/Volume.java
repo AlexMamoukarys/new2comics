@@ -63,7 +63,7 @@ public class Volume {
     @Nullable
     private List<VolumeCharacter> volumeCharacter = new ArrayList<>();
 
-    @OneToMany(mappedBy = "volume", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "volume", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @Nullable
     private List<VolumeGenre> volumeGenre = new ArrayList<>();
 

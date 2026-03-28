@@ -1,4 +1,5 @@
--- VolumeTeams (filtered)
+-- Volume Teams
+
 INSERT INTO volumeTeams(volumeId, teamId) VALUES(2190, 1800);
 INSERT INTO volumeTeams(volumeId, teamId) VALUES(3157, 1800);
 INSERT INTO volumeTeams(volumeId, teamId) VALUES(3340, 1800);
