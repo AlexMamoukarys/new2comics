@@ -21,10 +21,11 @@ public class Issue {
     @NotEmpty
     private String name;
 
-    @NotEmpty
-    private String deck;
+//    @NotEmpty
+//    private String deck;
 
     @NotEmpty
+    @Column(columnDefinition = "TEXT")
     private String description;
 
 }
