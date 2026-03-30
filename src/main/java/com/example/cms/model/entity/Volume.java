@@ -45,9 +45,10 @@ public class Volume {
     private String deck;
 
     // uncommneted firstIssue and renamed column to firstIssue
-    @OneToOne
-    @JoinColumn(name = "firstIssue")
-    private Issue firstIssue;
+//    @OneToOne
+//    @JoinColumn(name = "firstIssue")
+    @Nullable
+    private String firstIssue;
 
     @NotEmpty
     private int startYear;
