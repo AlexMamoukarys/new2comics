@@ -59,9 +59,16 @@ class UserTests {
 
 	@Test
 	void userAddsPreferredGenre() throws Exception {
-		// Get or create test data
-		Genre testGenre = genreRepository.findAll().isEmpty() ?
-			genreRepository.save(new Genre()) : genreRepository.findAll().get(0);
+		// Get existing test data or create with large ID
+		final Genre testGenre;
+		if (genreRepository.findAll().isEmpty()) {
+			Genre genre = new Genre();
+			genre.setId(999999L);
+			genre.setName("Test Genre");
+			testGenre = genreRepository.save(genre);
+		} else {
+			testGenre = genreRepository.findAll().get(0);
+		}
 
 		// Create a test user
 		User user = new User("testuser_genre", "password123");
@@ -83,9 +90,16 @@ class UserTests {
 
 	@Test
 	void userRemovesPreferredGenre() throws Exception {
-		// Get or create test data
-		Genre testGenre = genreRepository.findAll().isEmpty() ?
-			genreRepository.save(new Genre()) : genreRepository.findAll().get(0);
+		// Get existing test data or create with large ID
+		final Genre testGenre;
+		if (genreRepository.findAll().isEmpty()) {
+			Genre genre = new Genre();
+			genre.setId(999998L);
+			genre.setName("Test Genre");
+			testGenre = genreRepository.save(genre);
+		} else {
+			testGenre = genreRepository.findAll().get(0);
+		}
 
 		// Create a test user
 		User user = new User("testuser_remove_genre", "password123");
@@ -108,9 +122,16 @@ class UserTests {
 
 	@Test
 	void userLikesVolume() throws Exception {
-		// Get or create test data
-		Volume testVolume = volumeRepository.findAll().isEmpty() ?
-			volumeRepository.save(new Volume()) : volumeRepository.findAll().get(0);
+		// Get existing test data or create with large ID
+		final Volume testVolume;
+		if (volumeRepository.findAll().isEmpty()) {
+			Volume volume = new Volume();
+			volume.setId(999997L);
+			volume.setName("Test Volume");
+			testVolume = volumeRepository.save(volume);
+		} else {
+			testVolume = volumeRepository.findAll().get(0);
+		}
 
 		// Create a test user
 		User user = new User("testuser_like", "password123");
@@ -130,9 +151,16 @@ class UserTests {
 
 	@Test
 	void userSavesVolume() throws Exception {
-		// Get or create test data
-		Volume testVolume = volumeRepository.findAll().isEmpty() ?
-			volumeRepository.save(new Volume()) : volumeRepository.findAll().get(0);
+		// Get existing test data or create with large ID
+		final Volume testVolume;
+		if (volumeRepository.findAll().isEmpty()) {
+			Volume volume = new Volume();
+			volume.setId(999996L);
+			volume.setName("Test Volume");
+			testVolume = volumeRepository.save(volume);
+		} else {
+			testVolume = volumeRepository.findAll().get(0);
+		}
 
 		// Create a test user
 		User user = new User("testuser_save", "password123");
@@ -152,9 +180,16 @@ class UserTests {
 
 	@Test
 	void userRemovesLikedVolume() throws Exception {
-		// Get or create test data
-		Volume testVolume = volumeRepository.findAll().isEmpty() ?
-			volumeRepository.save(new Volume()) : volumeRepository.findAll().get(0);
+		// Get existing test data or create with large ID
+		final Volume testVolume;
+		if (volumeRepository.findAll().isEmpty()) {
+			Volume volume = new Volume();
+			volume.setId(999995L);
+			volume.setName("Test Volume");
+			testVolume = volumeRepository.save(volume);
+		} else {
+			testVolume = volumeRepository.findAll().get(0);
+		}
 
 		// Create a test user
 		User user = new User("testuser_unlike", "password123");
@@ -162,11 +197,11 @@ class UserTests {
 
 		// Like the volume first
 		LikedVolume likedVolume = new LikedVolume(savedUser, testVolume);
-		LikedVolume savedLikedVolume = likedVolumeRepository.save(likedVolume);
-		long likedVolumeId = savedLikedVolume.getId();
+		likedVolumeRepository.save(likedVolume);
 
 		// Verify it was liked
-		assertTrue(likedVolumeRepository.findById(likedVolumeId).isPresent());
+		assertTrue(likedVolumeRepository.findAll().stream()
+				.anyMatch(lv -> lv.getUser().getId() == savedUser.getId() && lv.getVolume().getId() == testVolume.getId()));
 
 		// Remove the liked volume via HTTP endpoint
 		MockHttpServletResponse response = mockMvc.perform(
@@ -175,15 +210,23 @@ class UserTests {
 
 		assertEquals(200, response.getStatus());
 
-		// Verify the liked volume was removed by checking if the ID no longer exists
-		assertTrue(likedVolumeRepository.findById(likedVolumeId).isEmpty());
+		// Verify the liked volume was removed
+		assertTrue(likedVolumeRepository.findAll().stream()
+				.noneMatch(lv -> lv.getUser().getId() == savedUser.getId() && lv.getVolume().getId() == testVolume.getId()));
 	}
 
 	@Test
 	void userRemovesSavedVolume() throws Exception {
-		// Get or create test data
-		Volume testVolume = volumeRepository.findAll().isEmpty() ?
-			volumeRepository.save(new Volume()) : volumeRepository.findAll().get(0);
+		// Get existing test data or create with large ID
+		final Volume testVolume;
+		if (volumeRepository.findAll().isEmpty()) {
+			Volume volume = new Volume();
+			volume.setId(999994L);
+			volume.setName("Test Volume");
+			testVolume = volumeRepository.save(volume);
+		} else {
+			testVolume = volumeRepository.findAll().get(0);
+		}
 
 		// Create a test user
 		User user = new User("testuser_unsave", "password123");
@@ -191,11 +234,11 @@ class UserTests {
 
 		// Save the volume first
 		SavedVolume savedVolume = new SavedVolume(savedUser, testVolume);
-		SavedVolume savedSavedVolume = savedVolumeRepository.save(savedVolume);
-		long savedVolumeId = savedSavedVolume.getId();
+		savedVolumeRepository.save(savedVolume);
 
 		// Verify it was saved
-		assertTrue(savedVolumeRepository.findById(savedVolumeId).isPresent());
+		assertTrue(savedVolumeRepository.findAll().stream()
+				.anyMatch(sv -> sv.getUser().getId() == savedUser.getId() && sv.getVolume().getId() == testVolume.getId()));
 
 		// Remove the saved volume via HTTP endpoint
 		MockHttpServletResponse response = mockMvc.perform(
@@ -204,8 +247,9 @@ class UserTests {
 
 		assertEquals(200, response.getStatus());
 
-		// Verify the saved volume was removed by checking if the ID no longer exists
-		assertTrue(savedVolumeRepository.findById(savedVolumeId).isEmpty());
+		// Verify the saved volume was removed
+		assertTrue(savedVolumeRepository.findAll().stream()
+				.noneMatch(sv -> sv.getUser().getId() == savedUser.getId() && sv.getVolume().getId() == testVolume.getId()));
 	}
 
 }
