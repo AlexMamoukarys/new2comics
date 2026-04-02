@@ -19,6 +19,7 @@ import com.example.cms.model.repository.PublisherRepository;
 import com.example.cms.model.repository.TeamRepository;
 import com.example.cms.model.repository.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,10 +92,15 @@ class UserPreferredTests {
 
 		assertEquals(200, response.getStatus());
 
-		// Verify via GET endpoint
-		MockHttpServletResponse getResponse = mockMvc.perform(get("/users/" + savedUser.getId() + "/preferredgenres"))
-				.andReturn().getResponse();
-		assertEquals(200, getResponse.getStatus());
+		// Parse response to get the ID
+		ObjectNode responseJson = objectMapper.readValue(response.getContentAsString(), ObjectNode.class);
+		long preferredGenreId = responseJson.get("id").longValue();
+
+		// Verify the preferred genre exists in repository
+		assertTrue(preferredGenreRepository.findById(preferredGenreId).isPresent());
+		PreferredGenre savedGenre = preferredGenreRepository.findById(preferredGenreId).get();
+		assertEquals(savedUser.getId(), savedGenre.getUser().getId());
+		assertEquals(testGenre.getId(), savedGenre.getGenre().getId());
 	}
 
 	@Test
@@ -145,10 +151,15 @@ class UserPreferredTests {
 
 		assertEquals(200, response.getStatus());
 
-		// Verify via GET endpoint
-		MockHttpServletResponse getResponse = mockMvc.perform(get("/users/" + savedUser.getId() + "/preferredcharacters"))
-				.andReturn().getResponse();
-		assertEquals(200, getResponse.getStatus());
+		// Parse response to get the ID
+		ObjectNode responseJson = objectMapper.readValue(response.getContentAsString(), ObjectNode.class);
+		long preferredCharacterId = responseJson.get("id").longValue();
+
+		// Verify the preferred character exists in repository
+		assertTrue(preferredCharacterRepository.findById(preferredCharacterId).isPresent());
+		PreferredCharacter savedCharacter = preferredCharacterRepository.findById(preferredCharacterId).get();
+		assertEquals(savedUser.getId(), savedCharacter.getUser().getId());
+		assertEquals(testCharacter.getId(), savedCharacter.getCharacter().getId());
 	}
 
 	@Test
@@ -199,10 +210,15 @@ class UserPreferredTests {
 
 		assertEquals(200, response.getStatus());
 
-		// Verify via GET endpoint
-		MockHttpServletResponse getResponse = mockMvc.perform(get("/users/" + savedUser.getId() + "/preferredpublishers"))
-				.andReturn().getResponse();
-		assertEquals(200, getResponse.getStatus());
+		// Parse response to get the ID
+		ObjectNode responseJson = objectMapper.readValue(response.getContentAsString(), ObjectNode.class);
+		long preferredPublisherId = responseJson.get("id").longValue();
+
+		// Verify the preferred publisher exists in repository
+		assertTrue(preferredPublisherRepository.findById(preferredPublisherId).isPresent());
+		PreferredPublisher savedPublisher = preferredPublisherRepository.findById(preferredPublisherId).get();
+		assertEquals(savedUser.getId(), savedPublisher.getUser().getId());
+		assertEquals(testPublisher.getId(), savedPublisher.getPublisher().getId());
 	}
 
 	@Test
@@ -253,10 +269,15 @@ class UserPreferredTests {
 
 		assertEquals(200, response.getStatus());
 
-		// Verify via GET endpoint
-		MockHttpServletResponse getResponse = mockMvc.perform(get("/users/" + savedUser.getId() + "/preferredteams"))
-				.andReturn().getResponse();
-		assertEquals(200, getResponse.getStatus());
+		// Parse response to get the ID
+		ObjectNode responseJson = objectMapper.readValue(response.getContentAsString(), ObjectNode.class);
+		long preferredTeamId = responseJson.get("id").longValue();
+
+		// Verify the preferred team exists in repository
+		assertTrue(preferredTeamRepository.findById(preferredTeamId).isPresent());
+		PreferredTeam savedTeam = preferredTeamRepository.findById(preferredTeamId).get();
+		assertEquals(savedUser.getId(), savedTeam.getUser().getId());
+		assertEquals(testTeam.getId(), savedTeam.getTeam().getId());
 	}
 
 	@Test
