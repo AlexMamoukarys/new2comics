@@ -18,6 +18,7 @@ import com.example.cms.model.repository.PreferredTeamRepository;
 import com.example.cms.model.repository.PublisherRepository;
 import com.example.cms.model.repository.TeamRepository;
 import com.example.cms.model.repository.UserRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,9 @@ class UserPreferredTests {
 
 	@Autowired
 	private MockMvc mockMvc;
+
+	@Autowired
+	private ObjectMapper objectMapper;
 
 	@Autowired
 	private UserRepository userRepository;
@@ -68,47 +72,35 @@ class UserPreferredTests {
 
 	@Test
 	void userAddsPreferredGenre() throws Exception {
-		// Get existing test data or create with large ID
-		final Genre testGenre;
-		if (genreRepository.findAll().isEmpty()) {
-			Genre genre = new Genre();
-			genre.setId(999999L);
-			genre.setName("Test Genre");
-			testGenre = genreRepository.save(genre);
-		} else {
-			testGenre = genreRepository.findAll().get(0);
-		}
+		// Get existing test data
+		final Genre testGenre = genreRepository.findAll().get(0);
 
 		// Create a test user
 		User user = new User("testuser_genre", "password123");
 		final User savedUser = userRepository.save(user);
 
-		// Create and save a preferred genre
+		// Create a preferred genre object
 		PreferredGenre preferredGenre = new PreferredGenre(savedUser, testGenre);
-		PreferredGenre savedGenre = preferredGenreRepository.save(preferredGenre);
 
-		// Verify the preferred genre was saved
-		assertEquals(savedUser.getId(), savedGenre.getUser().getId());
-		assertEquals(testGenre.getId(), savedGenre.getGenre().getId());
+		// POST to controller endpoint
+		MockHttpServletResponse response = mockMvc.perform(
+				post("/preferredgenres")
+						.contentType("application/json")
+						.content(objectMapper.writeValueAsString(preferredGenre)))
+				.andReturn().getResponse();
+
+		assertEquals(200, response.getStatus());
 
 		// Verify via GET endpoint
-		MockHttpServletResponse response = mockMvc.perform(get("/users/" + savedUser.getId() + "/preferredgenres"))
+		MockHttpServletResponse getResponse = mockMvc.perform(get("/users/" + savedUser.getId() + "/preferredgenres"))
 				.andReturn().getResponse();
-		assertEquals(200, response.getStatus());
+		assertEquals(200, getResponse.getStatus());
 	}
 
 	@Test
 	void userRemovesPreferredGenre() throws Exception {
-		// Get existing test data or create with large ID
-		final Genre testGenre;
-		if (genreRepository.findAll().isEmpty()) {
-			Genre genre = new Genre();
-			genre.setId(999998L);
-			genre.setName("Test Genre");
-			testGenre = genreRepository.save(genre);
-		} else {
-			testGenre = genreRepository.findAll().get(0);
-		}
+		// Get existing test data
+		final Genre testGenre = genreRepository.findAll().get(0);
 
 		// Create a test user
 		User user = new User("testuser_remove_genre", "password123");
@@ -117,61 +109,52 @@ class UserPreferredTests {
 		// Add a preferred genre
 		PreferredGenre preferredGenre = new PreferredGenre(savedUser, testGenre);
 		PreferredGenre savedGenre = preferredGenreRepository.save(preferredGenre);
-		long preferredGenreId = savedGenre.getId();
 
 		// Verify it was added
-		assertTrue(preferredGenreRepository.findById(preferredGenreId).isPresent());
+		assertTrue(preferredGenreRepository.findById(savedGenre.getId()).isPresent());
 
-		// Remove the preferred genre
-		preferredGenreRepository.deleteById(preferredGenreId);
+		// Remove the preferred genre via DELETE endpoint
+		MockHttpServletResponse response = mockMvc.perform(
+				delete("/preferredgenres/" + savedUser.getId() + "/" + testGenre.getId()))
+				.andReturn().getResponse();
+
+		assertEquals(200, response.getStatus());
 
 		// Verify it was removed
-		assertTrue(preferredGenreRepository.findById(preferredGenreId).isEmpty());
+		assertTrue(preferredGenreRepository.findById(savedGenre.getId()).isEmpty());
 	}
 
 	@Test
 	void userAddsPreferredCharacter() throws Exception {
-		// Get existing test data or create with large ID
-		final Character testCharacter;
-		if (characterRepository.findAll().isEmpty()) {
-			Character character = new Character();
-			character.setId(999997L);
-			character.setName("Test Character");
-			testCharacter = characterRepository.save(character);
-		} else {
-			testCharacter = characterRepository.findAll().get(0);
-		}
+		// Get existing test data
+		final Character testCharacter = characterRepository.findAll().get(0);
 
 		// Create a test user
 		User user = new User("testuser_character", "password123");
 		final User savedUser = userRepository.save(user);
 
-		// Create and save a preferred character
+		// Create a preferred character object
 		PreferredCharacter preferredCharacter = new PreferredCharacter(savedUser, testCharacter);
-		PreferredCharacter savedCharacter = preferredCharacterRepository.save(preferredCharacter);
 
-		// Verify the preferred character was saved
-		assertEquals(savedUser.getId(), savedCharacter.getUser().getId());
-		assertEquals(testCharacter.getId(), savedCharacter.getCharacter().getId());
+		// POST to controller endpoint
+		MockHttpServletResponse response = mockMvc.perform(
+				post("/preferredcharacters")
+						.contentType("application/json")
+						.content(objectMapper.writeValueAsString(preferredCharacter)))
+				.andReturn().getResponse();
+
+		assertEquals(200, response.getStatus());
 
 		// Verify via GET endpoint
-		MockHttpServletResponse response = mockMvc.perform(get("/users/" + savedUser.getId() + "/preferredcharacters"))
+		MockHttpServletResponse getResponse = mockMvc.perform(get("/users/" + savedUser.getId() + "/preferredcharacters"))
 				.andReturn().getResponse();
-		assertEquals(200, response.getStatus());
+		assertEquals(200, getResponse.getStatus());
 	}
 
 	@Test
 	void userRemovesPreferredCharacter() throws Exception {
-		// Get existing test data or create with large ID
-		final Character testCharacter;
-		if (characterRepository.findAll().isEmpty()) {
-			Character character = new Character();
-			character.setId(999996L);
-			character.setName("Test Character");
-			testCharacter = characterRepository.save(character);
-		} else {
-			testCharacter = characterRepository.findAll().get(0);
-		}
+		// Get existing test data
+		final Character testCharacter = characterRepository.findAll().get(0);
 
 		// Create a test user
 		User user = new User("testuser_remove_character", "password123");
@@ -180,61 +163,52 @@ class UserPreferredTests {
 		// Add a preferred character
 		PreferredCharacter preferredCharacter = new PreferredCharacter(savedUser, testCharacter);
 		PreferredCharacter savedCharacter = preferredCharacterRepository.save(preferredCharacter);
-		long preferredCharacterId = savedCharacter.getId();
 
 		// Verify it was added
-		assertTrue(preferredCharacterRepository.findById(preferredCharacterId).isPresent());
+		assertTrue(preferredCharacterRepository.findById(savedCharacter.getId()).isPresent());
 
-		// Remove the preferred character
-		preferredCharacterRepository.deleteById(preferredCharacterId);
+		// Remove the preferred character via DELETE endpoint
+		MockHttpServletResponse response = mockMvc.perform(
+				delete("/preferredcharacters/" + savedUser.getId() + "/" + testCharacter.getId()))
+				.andReturn().getResponse();
+
+		assertEquals(200, response.getStatus());
 
 		// Verify it was removed
-		assertTrue(preferredCharacterRepository.findById(preferredCharacterId).isEmpty());
+		assertTrue(preferredCharacterRepository.findById(savedCharacter.getId()).isEmpty());
 	}
 
 	@Test
 	void userAddsPreferredPublisher() throws Exception {
-		// Get existing test data or create with large ID
-		final Publisher testPublisher;
-		if (publisherRepository.findAll().isEmpty()) {
-			Publisher publisher = new Publisher();
-			publisher.setId(999995L);
-			publisher.setName("Test Publisher");
-			testPublisher = publisherRepository.save(publisher);
-		} else {
-			testPublisher = publisherRepository.findAll().get(0);
-		}
+		// Get existing test data
+		final Publisher testPublisher = publisherRepository.findAll().get(0);
 
 		// Create a test user
 		User user = new User("testuser_publisher", "password123");
 		final User savedUser = userRepository.save(user);
 
-		// Create and save a preferred publisher
+		// Create a preferred publisher object
 		PreferredPublisher preferredPublisher = new PreferredPublisher(savedUser, testPublisher);
-		PreferredPublisher savedPublisher = preferredPublisherRepository.save(preferredPublisher);
 
-		// Verify the preferred publisher was saved
-		assertEquals(savedUser.getId(), savedPublisher.getUser().getId());
-		assertEquals(testPublisher.getId(), savedPublisher.getPublisher().getId());
+		// POST to controller endpoint
+		MockHttpServletResponse response = mockMvc.perform(
+				post("/preferredpublishers")
+						.contentType("application/json")
+						.content(objectMapper.writeValueAsString(preferredPublisher)))
+				.andReturn().getResponse();
+
+		assertEquals(200, response.getStatus());
 
 		// Verify via GET endpoint
-		MockHttpServletResponse response = mockMvc.perform(get("/users/" + savedUser.getId() + "/preferredpublishers"))
+		MockHttpServletResponse getResponse = mockMvc.perform(get("/users/" + savedUser.getId() + "/preferredpublishers"))
 				.andReturn().getResponse();
-		assertEquals(200, response.getStatus());
+		assertEquals(200, getResponse.getStatus());
 	}
 
 	@Test
 	void userRemovesPreferredPublisher() throws Exception {
-		// Get existing test data or create with large ID
-		final Publisher testPublisher;
-		if (publisherRepository.findAll().isEmpty()) {
-			Publisher publisher = new Publisher();
-			publisher.setId(999994L);
-			publisher.setName("Test Publisher");
-			testPublisher = publisherRepository.save(publisher);
-		} else {
-			testPublisher = publisherRepository.findAll().get(0);
-		}
+		// Get existing test data
+		final Publisher testPublisher = publisherRepository.findAll().get(0);
 
 		// Create a test user
 		User user = new User("testuser_remove_publisher", "password123");
@@ -243,61 +217,52 @@ class UserPreferredTests {
 		// Add a preferred publisher
 		PreferredPublisher preferredPublisher = new PreferredPublisher(savedUser, testPublisher);
 		PreferredPublisher savedPublisher = preferredPublisherRepository.save(preferredPublisher);
-		long preferredPublisherId = savedPublisher.getId();
 
 		// Verify it was added
-		assertTrue(preferredPublisherRepository.findById(preferredPublisherId).isPresent());
+		assertTrue(preferredPublisherRepository.findById(savedPublisher.getId()).isPresent());
 
-		// Remove the preferred publisher
-		preferredPublisherRepository.deleteById(preferredPublisherId);
+		// Remove the preferred publisher via DELETE endpoint
+		MockHttpServletResponse response = mockMvc.perform(
+				delete("/preferredpublishers/" + savedUser.getId() + "/" + testPublisher.getId()))
+				.andReturn().getResponse();
+
+		assertEquals(200, response.getStatus());
 
 		// Verify it was removed
-		assertTrue(preferredPublisherRepository.findById(preferredPublisherId).isEmpty());
+		assertTrue(preferredPublisherRepository.findById(savedPublisher.getId()).isEmpty());
 	}
 
 	@Test
 	void userAddsPreferredTeam() throws Exception {
-		// Get existing test data or create with large ID
-		final Team testTeam;
-		if (teamRepository.findAll().isEmpty()) {
-			Team team = new Team();
-			team.setId(999993L);
-			team.setName("Test Team");
-			testTeam = teamRepository.save(team);
-		} else {
-			testTeam = teamRepository.findAll().get(0);
-		}
+		// Get existing test data
+		final Team testTeam = teamRepository.findAll().get(0);
 
 		// Create a test user
 		User user = new User("testuser_team", "password123");
 		final User savedUser = userRepository.save(user);
 
-		// Create and save a preferred team
+		// Create a preferred team object
 		PreferredTeam preferredTeam = new PreferredTeam(savedUser, testTeam);
-		PreferredTeam savedTeam = preferredTeamRepository.save(preferredTeam);
 
-		// Verify the preferred team was saved
-		assertEquals(savedUser.getId(), savedTeam.getUser().getId());
-		assertEquals(testTeam.getId(), savedTeam.getTeam().getId());
+		// POST to controller endpoint
+		MockHttpServletResponse response = mockMvc.perform(
+				post("/preferredteams")
+						.contentType("application/json")
+						.content(objectMapper.writeValueAsString(preferredTeam)))
+				.andReturn().getResponse();
+
+		assertEquals(200, response.getStatus());
 
 		// Verify via GET endpoint
-		MockHttpServletResponse response = mockMvc.perform(get("/users/" + savedUser.getId() + "/preferredteams"))
+		MockHttpServletResponse getResponse = mockMvc.perform(get("/users/" + savedUser.getId() + "/preferredteams"))
 				.andReturn().getResponse();
-		assertEquals(200, response.getStatus());
+		assertEquals(200, getResponse.getStatus());
 	}
 
 	@Test
 	void userRemovesPreferredTeam() throws Exception {
-		// Get existing test data or create with large ID
-		final Team testTeam;
-		if (teamRepository.findAll().isEmpty()) {
-			Team team = new Team();
-			team.setId(999992L);
-			team.setName("Test Team");
-			testTeam = teamRepository.save(team);
-		} else {
-			testTeam = teamRepository.findAll().get(0);
-		}
+		// Get existing test data
+		final Team testTeam = teamRepository.findAll().get(0);
 
 		// Create a test user
 		User user = new User("testuser_remove_team", "password123");
@@ -306,15 +271,18 @@ class UserPreferredTests {
 		// Add a preferred team
 		PreferredTeam preferredTeam = new PreferredTeam(savedUser, testTeam);
 		PreferredTeam savedTeam = preferredTeamRepository.save(preferredTeam);
-		long preferredTeamId = savedTeam.getId();
 
 		// Verify it was added
-		assertTrue(preferredTeamRepository.findById(preferredTeamId).isPresent());
+		assertTrue(preferredTeamRepository.findById(savedTeam.getId()).isPresent());
 
-		// Remove the preferred team
-		preferredTeamRepository.deleteById(preferredTeamId);
+		// Remove the preferred team via DELETE endpoint
+		MockHttpServletResponse response = mockMvc.perform(
+				delete("/preferredteams/" + savedUser.getId() + "/" + testTeam.getId()))
+				.andReturn().getResponse();
+
+		assertEquals(200, response.getStatus());
 
 		// Verify it was removed
-		assertTrue(preferredTeamRepository.findById(preferredTeamId).isEmpty());
+		assertTrue(preferredTeamRepository.findById(savedTeam.getId()).isEmpty());
 	}
 }
