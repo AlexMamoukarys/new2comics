@@ -53,7 +53,7 @@ public class VolumeTeamController {
     }
 
     @DeleteMapping("/volume_team/{volumeId}/{teamId}")
-    void deleteCourseMark(@PathVariable("volumeId") long volumeId, @PathVariable("teamId") Long teamId) {
+    void deleteVolumeTeam(@PathVariable("volumeId") long volumeId, @PathVariable("teamId") Long teamId) {
         VolumeTeamKey volumeTeamKey = new VolumeTeamKey(volumeId, teamId);
         repository.deleteById(volumeTeamKey);
     }

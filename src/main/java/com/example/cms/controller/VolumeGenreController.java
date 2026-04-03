@@ -53,7 +53,7 @@ public class VolumeGenreController {
     }
 
     @DeleteMapping("/volume_genre/{volumeId}/{genreId}")
-    void deleteCourseMark(@PathVariable("volumeId") long volumeId, @PathVariable("genreId") Long genreId) {
+    void deleteVolumeGenre(@PathVariable("volumeId") long volumeId, @PathVariable("genreId") Long genreId) {
         VolumeGenreKey volumeGenreKey = new VolumeGenreKey(volumeId, genreId);
         repository.deleteById(volumeGenreKey);
     }
