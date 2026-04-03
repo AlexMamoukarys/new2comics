@@ -24,20 +24,17 @@ import com.example.cms.model.entity.SavedVolume;
 import com.example.cms.model.entity.PreferredGenre;
 import com.example.cms.model.entity.PreferredCharacter;
 import com.example.cms.model.entity.PreferredPublisher;
-import com.example.cms.model.entity.PreferredPower;
 import com.example.cms.model.entity.PreferredTeam;
 import com.example.cms.model.repository.UserRepository;
 import com.example.cms.model.repository.VolumeRepository;
 import com.example.cms.model.repository.CharacterRepository;
 import com.example.cms.model.repository.GenreRepository;
 import com.example.cms.model.repository.LikedVolumeRepository;
-import com.example.cms.model.repository.PowerRepository;
 import com.example.cms.model.repository.SavedVolumeRepository;
 import com.example.cms.model.repository.TeamRepository;
 import com.example.cms.model.repository.PreferredGenreRepository;
 import com.example.cms.model.repository.PreferredCharacterRepository;
 import com.example.cms.model.repository.PreferredPublisherRepository;
-import com.example.cms.model.repository.PreferredPowerRepository;
 import com.example.cms.model.repository.PreferredTeamRepository;
 import com.example.cms.model.repository.PublisherRepository;
 
@@ -59,13 +56,11 @@ public class UserController {
                           PreferredGenreRepository preferredGenreRepository,
                           PreferredCharacterRepository preferredCharacterRepository,
                           PreferredPublisherRepository preferredPublisherRepository,
-                          PreferredPowerRepository preferredPowerRepository,
                           PreferredTeamRepository preferredTeamRepository,
                           VolumeRepository volumeRepository,
                           GenreRepository genreRepository,
                           CharacterRepository characterRepository,
                           PublisherRepository publisherRepository,
-                          PowerRepository powerRepository,
                           TeamRepository teamRepository) {
         this.repository = repository;
         this.likedVolumeRepository = likedVolumeRepository;
@@ -112,12 +107,6 @@ public class UserController {
     List<PreferredGenre> getPreferredGenres(@PathVariable("id") Long userId) {
         User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
         return user.getPreferredGenres();
-    }
-
-    @GetMapping("/users/{id}/preferredpowers")
-    List<PreferredPower> getPreferredPowers(@PathVariable("id") Long userId) {
-        User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
-        return user.getPreferredPowers();
     }
 
     @GetMapping("/users/{id}/preferredteams")
