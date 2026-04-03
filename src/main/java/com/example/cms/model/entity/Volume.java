@@ -31,8 +31,6 @@ public class Volume {
     //@Nullable
     //private List<Genre> genres = new ArrayList<>();
 
-    // TODO do we want @Nullable for anything else?
-
     @NotEmpty
     private int numIssues;
     
@@ -68,7 +66,6 @@ public class Volume {
     @Nullable
     private List<VolumeGenre> volumeGenre = new ArrayList<>();
 
-    // TODO uncomment and edit column name after making Publisher entity
     @ManyToOne
     @JoinColumn(name="publisherId")
     private Publisher publisher;
