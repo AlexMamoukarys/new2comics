@@ -51,27 +51,7 @@ public class UserController {
     @Autowired
     private final SavedVolumeRepository savedVolumeRepository;
     @Autowired
-    private final PreferredGenreRepository preferredGenreRepository;
-    @Autowired
-    private final PreferredCharacterRepository preferredCharacterRepository;
-    @Autowired
-    private final PreferredPublisherRepository preferredPublisherRepository;
-    @Autowired
-    private final PreferredPowerRepository preferredPowerRepository;
-    @Autowired
-    private final PreferredTeamRepository preferredTeamRepository;
-    @Autowired
     private final VolumeRepository volumeRepository;
-    @Autowired
-    private final GenreRepository genreRepository;
-    @Autowired
-    private final CharacterRepository characterRepository;
-    @Autowired
-    private final PublisherRepository publisherRepository;
-    @Autowired
-    private final PowerRepository powerRepository;
-    @Autowired
-    private final TeamRepository teamRepository;
 
     public UserController(UserRepository repository,
                           LikedVolumeRepository likedVolumeRepository,
@@ -90,17 +70,7 @@ public class UserController {
         this.repository = repository;
         this.likedVolumeRepository = likedVolumeRepository;
         this.savedVolumeRepository = savedVolumeRepository;
-        this.preferredGenreRepository = preferredGenreRepository;
-        this.preferredCharacterRepository = preferredCharacterRepository;
-        this.preferredPublisherRepository = preferredPublisherRepository;
-        this.preferredPowerRepository = preferredPowerRepository;
-        this.preferredTeamRepository = preferredTeamRepository;
         this.volumeRepository = volumeRepository;
-        this.genreRepository = genreRepository;
-        this.characterRepository = characterRepository;
-        this.publisherRepository = publisherRepository;
-        this.powerRepository = powerRepository;
-        this.teamRepository = teamRepository;
     }
 
     @GetMapping("/users")
