@@ -16,6 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -128,7 +129,7 @@ class UserVolumeTests {
 
 		// Remove the liked volume via HTTP endpoint
 		MockHttpServletResponse response = mockMvc.perform(
-				put("/users/" + savedUser.getId() + "/likedvolumes/remove/" + testVolume.getId()))
+				delete("/volumes/" + testVolume.getId() + "/like/" + savedUser.getId()))
 				.andReturn().getResponse();
 
 		assertEquals(200, response.getStatus());
@@ -161,7 +162,7 @@ class UserVolumeTests {
 
 		// Remove the saved volume via HTTP endpoint
 		MockHttpServletResponse response = mockMvc.perform(
-				put("/users/" + savedUser.getId() + "/savedvolumes/remove/" + testVolume.getId()))
+				delete("/volumes/" + testVolume.getId() + "/save/" + savedUser.getId()))
 				.andReturn().getResponse();
 
 		assertEquals(200, response.getStatus());
