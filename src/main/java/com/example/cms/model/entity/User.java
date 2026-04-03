@@ -62,11 +62,6 @@ public class User {
     @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     @Nullable
-    private List<PreferredPower> preferredPowers = new ArrayList<>();
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    @Nullable
     private List<PreferredTeam> preferredTeams = new ArrayList<>();
 
     @JsonIgnore

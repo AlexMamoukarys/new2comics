@@ -54,7 +54,7 @@ public class VolumeCharacterController {
     }
 
     @DeleteMapping("/volume_character/{volumeId}/{characterId}")
-    void deleteCourseMark(@PathVariable("volumeId") long volumeId, @PathVariable("characterId") Long characterId) {
+    void deleteVolumeCharacter(@PathVariable("volumeId") long volumeId, @PathVariable("characterId") Long characterId) {
         VolumeCharacterKey volumeCharacterKey = new VolumeCharacterKey(volumeId, characterId);
         repository.deleteById(volumeCharacterKey);
     }
