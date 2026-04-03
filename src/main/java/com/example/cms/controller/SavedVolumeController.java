@@ -30,7 +30,7 @@ public class SavedVolumeController {
     }
 
     @PostMapping("/savedvolumes")
-    SavedVolume createLikedVolume(@RequestBody SavedVolume newVolume) {
+    SavedVolume createSavedVolume(@RequestBody SavedVolume newVolume) {
         return repository.save(newVolume);
     }
 
