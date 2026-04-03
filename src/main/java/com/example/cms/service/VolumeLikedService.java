@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.cms.model.entity.LikedVolume;
-import com.example.cms.model.entity.SavedVolume;
 import com.example.cms.model.entity.User;
 import com.example.cms.model.entity.Volume;
 import com.example.cms.model.repository.LikedVolumeRepository;

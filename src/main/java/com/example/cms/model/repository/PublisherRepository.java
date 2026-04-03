@@ -1,8 +1,6 @@
 package com.example.cms.model.repository;
 
 import com.example.cms.model.entity.Publisher;
-import com.example.cms.model.entity.Team;
-
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
