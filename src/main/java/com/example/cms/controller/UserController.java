@@ -6,14 +6,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.cms.controller.exceptions.UserNotFoundException;
 import com.example.cms.controller.exceptions.VolumeNotFoundException;
@@ -193,6 +186,17 @@ public class UserController {
     @DeleteMapping("/users/{userId}")                          // Delete
     void deleteUser(@PathVariable("userId") Long userId) {
         repository.deleteById(userId);
+    }
+
+    @GetMapping("/users/{id}")
+    User getUserById(@PathVariable("id") Long userId) {
+        return repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
+    }
+
+    @GetMapping("/users/username")
+    public ResponseEntity<?> checkUsername(@RequestParam String username) {
+        boolean exists = repository.findByUsername(username).isPresent();
+        return ResponseEntity.ok(Map.of("exists", exists));
     }
 
 
