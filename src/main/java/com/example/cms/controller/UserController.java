@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.cms.controller.exceptions.UserNotFoundException;
@@ -165,6 +166,17 @@ public class UserController {
     List<PreferredTeam> getPreferredTeams(@PathVariable("id") Long userId) {
         User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
         return user.getPreferredTeams();
+    }
+
+    @GetMapping("/users/{id}")
+    User getUserById(@PathVariable("id") Long userId) {
+        return repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
+    }
+
+    @GetMapping("/users/username")
+    public ResponseEntity<?> checkUsername(@RequestParam String username) {
+        boolean exists = repository.findByUsername(username).isPresent();
+        return ResponseEntity.ok(Map.of("exists", exists));
     }
 
     // POST endpoints
