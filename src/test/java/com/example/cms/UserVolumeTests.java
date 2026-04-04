@@ -2,8 +2,6 @@ package com.example.cms;
 
 import com.example.cms.model.entity.User;
 import com.example.cms.model.entity.Volume;
-import com.example.cms.model.entity.LikedVolume;
-import com.example.cms.model.entity.SavedVolume;
 import com.example.cms.model.repository.UserRepository;
 import com.example.cms.model.repository.VolumeRepository;
 import com.example.cms.model.repository.LikedVolumeRepository;
@@ -16,10 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.web.bind.annotation.PathVariable;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
 @ExtendWith(SpringExtension.class)
@@ -44,16 +39,9 @@ class UserVolumeTests {
 
 	@Test
 	void userLikesVolume() throws Exception {
-		// Get existing test data or create with large ID
+		// Get existing test data
 		final Volume testVolume;
-		if (volumeRepository.findAll().isEmpty()) {
-			Volume volume = new Volume();
-			volume.setId(999997L);
-			volume.setName("Test Volume");
-			testVolume = volumeRepository.save(volume);
-		} else {
-			testVolume = volumeRepository.findAll().get(0);
-		}
+        testVolume = volumeRepository.findAll().get(0);
 
 		// Create a test user
 		User user = new User("testuser_like", "password123");
@@ -76,16 +64,9 @@ class UserVolumeTests {
 
 	@Test
 	void userSavesVolume() throws Exception {
-		// Get existing test data or create with large ID
+		// Get existing test data
 		final Volume testVolume;
-		if (volumeRepository.findAll().isEmpty()) {
-			Volume volume = new Volume();
-			volume.setId(999996L);
-			volume.setName("Test Volume");
-			testVolume = volumeRepository.save(volume);
-		} else {
-			testVolume = volumeRepository.findAll().get(0);
-		}
+        testVolume = volumeRepository.findAll().get(0);
 
 		// Create a test user
 		User user = new User("testuser_save", "password123");
