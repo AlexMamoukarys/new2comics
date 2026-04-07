@@ -85,26 +85,12 @@ public interface VolumeRepository extends JpaRepository<Volume, Long> {
     "    AND pt.userId = :user_id " +
     
     "GROUP BY v.id " +
-    "ORDER BY total_count DESC", nativeQuery = true)
+    "ORDER BY total_count DESC " +
+    "LIMIT 15", nativeQuery = true)
   List<Volume> search(@Param("searchTerm") String searchTerm, @Param("user_id") long user_id);
 
-    @Query(value = "SELECT * FROM volumes v ORDER BY v.numLikes desc", nativeQuery = true)
+    @Query(value = "SELECT * FROM volumes v ORDER BY v.numLikes desc LIMIT 15", nativeQuery = true)
     List<Volume> retrievePopularVolumes();
-
-//    @Query(value = "SELECT distinct v.* from volumes v"
-//            + "join characters c on v.character_id = c.id"
-//            + "join genres g on v.genre_id = g.id"
-//            + "join publisher p on v.id = p.volume_id"
-//            + "join teams t on p.team_id = t.id"
-//            + "join issues s on v.id = s.volume_id"
-//            + "where v.name like %:searchTerm%"
-//            + "or c.name like %:searchTerm%"
-//            + "or g.name like %:searchTerm%"
-//            + "or p.name like %:searchTerm%"
-//            + "or t.name like %:searchTerm%"
-//            + "or s.name like %:searchTerm%", nativeQuery = true)
-//    List<Volume> search(@Param("searchTerm") String searchTerm);
-
 
     @Modifying
     @Transactional
